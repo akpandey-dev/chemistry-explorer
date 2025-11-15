@@ -15,7 +15,7 @@ let allElements = []; // cache all elements
 
 async function loadElements() {
   try {
-    const response = await fetch("elements.json");
+    const response = await fetch("http://localhost:8080/elements.json");
     allElements = await response.json();
     renderPeriodicTable(allElements);
   } catch (error) {
