@@ -54,8 +54,55 @@ function renderPeriodicTable(elements) {
     `;
 
     table.appendChild(cell);
+
+
+// RIGHT-CLICK = open popup
+cell.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  openPopup(el);
+});
+
+// LONG PRESS = open popup
+let pressTimer;
+cell.addEventListener("touchstart", () => {
+  pressTimer = setTimeout(() => openPopup(el), 500);
+});
+cell.addEventListener("touchend", () => clearTimeout(pressTimer));
   });
 }
+
+
+
+
+// =========================
+// Popup System
+// =========================
+const popup = document.getElementById("element-popup");
+const popupContent = document.getElementById("popup-content");
+
+// Close popup when clicking outside it
+popup.addEventListener("click", (event) => {
+  if (event.target === popup) popup.style.display = "none";
+});
+
+function openPopup(el) {
+  popupContent.innerHTML = `
+    <h2 style="color:${colorMap[el.category.toLowerCase()] || 'white'};">
+      ${el.symbol} – ${el.name}
+    </h2>
+    <p><strong>Atomic No:</strong> ${el.atomicNumber}</p>
+    <p><strong>Atomic Mass:</strong> ${el.atomicMass}</p>
+    <p><strong>Valency:</strong> ${el.valency}</p>
+    <p><strong>Category:</strong> ${el.category}</p>
+    <p><strong>Block:</strong> ${el.block.toUpperCase()}</p>
+    <p><strong>Period:</strong> ${el.period}</p>
+    <p><strong>Group:</strong> ${el.group}</p>
+  `;
+
+  popup.style.display = "flex";
+}
+
+
 
 
 // 🔍 SEARCH FEATURE
