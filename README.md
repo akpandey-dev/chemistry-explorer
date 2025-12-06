@@ -14,7 +14,8 @@ A simple interactive Element Information datasheet built to make exploring chemi
     - Valency
     - Atomic Mass
     - Neutron count
-* Built using plain HTML and CSS.
+* Built using plain HTML, CSS and JS.
+* UI auto generated via JS to keep HTML clean
 * Lightweight and fast-loading with no external dependencies.
 * Simple responsive layout that works on both desktop and mobile devices.
 * More features coming soon...
