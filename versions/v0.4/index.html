@@ -4,23 +4,39 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Element Info</title>
+
 <style>
 
-body{
-    font-family:Arial;
-    background:aquamarine;
-    margin:20px;
-    line-height:1.6;
+body {
+    font-family: Arial, sans-serif;
+    background: #d7fff1;
+    margin: 24px;
+    line-height: 1.5;
+    color: #222;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 20px 0;
+}
 
-nav{
-    text-align:center;
-} 
+nav a {
+    text-decoration: none;
+    color: #155;
+    background: rgba(255,255,255,.5);
+    border: 1px solid rgba(0,0,0,.15);
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: .2s;
+}
 
-nav a{
-    margin:3px;
-} 
+nav a:hover {
+    background: #2c7ef7;
+    color: white;
+}
 
 h1{
     text-align:center;
@@ -34,10 +50,93 @@ hr {
     margin: 15px 0;
 }
 
-#elements{
+.table-wrapper {
+    max-height: 80vh;
+    overflow: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+.table-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #4f8cff #d8f5ee;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #d8f5ee;
+    border-radius: 999px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #53b5ff, #2c7ef7);
+    border-radius: 999px;
+    border: 2px solid #d8f5ee;
+}
+
+#elements {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+#elements th,
+#elements td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #ececec;
+}
+
+#elements td:first-child {
+    font-weight: bold;
+}
+
+#elements thead th {
+    position: sticky;
+    top: 0;
+    background: #2c7ef7;
+    color: white;
+    font-weight: 600;
+    padding: 12px 14px;
+    text-align: left;
+    z-index: 5;
+}
+
+
+#elements tbody tr:nth-child(even) {
+    background: #f7fbff;
+}
+
+#elements tbody tr:nth-child(odd) {
+    background: white;
+}
+
+#elements tbody tr {
+    transition: background .15s;
+}
+
+#elements tbody tr:hover {
+    background: #d9ebff;
+}
+
+@keyframes flash-row {
+    0% {
+        background: #ffe066;
+    }
+
+    100% {
+        background: inherit;
+    }
+}
+
+.highlight-row {
+    animation: flash-row 2s ease;
 }
 
 </style>
@@ -48,7 +147,25 @@ hr {
 <nav id="nav">
 </nav>
 
-<div id="elements"></div>
+<div class="table-wrapper">
+<table id="elements">
+    <thead>
+        <tr>
+            <th>Element</th>
+            <th>Symbol</th>
+            <th>Atomic No.</th>
+            <th>Group</th>
+            <th>Period</th>
+            <th>Block</th>
+            <th>Valency</th>
+            <th>Atomic Mass</th>
+            <th>Neutrons</th>
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+</table>
+</div>
 
 <script>
  
@@ -537,30 +654,47 @@ neutrons: 51
 ];
 
 const nav = document.getElementById("nav");
-const container = document.getElementById("elements");
+const tbody = document.querySelector("#elements tbody");
 
 for (const element of elements) {
 
     nav.innerHTML += `<a href="#${element.id}">${element.symbol}</a>\n`;
 
-    let html = `
-    <section class="element" id="${element.id}">
-    <h2>${element.name}</h2>
-    <p>Symbol: ${element.symbol}</p>
-    <p>Atomic number: ${element.atomicNumber}</p>
-    <p>Group: ${element.group}</p>
-    <p>Period: ${element.period}</p>
-    <p>Block: ${element.block}</p>
-    <p>Valency: ${element.valency}</p>
-    <p>Atomic mass: ${element.atomicMass}</p>
-    <p>Neutrons (common isotope): ${element.neutrons}</p>
-    </section>
-    <hr>
-`;
-
-    container.innerHTML += html;
+    tbody.innerHTML += `
+        <tr id="${element.id}">
+            <td>${element.name}</td>
+            <td>${element.symbol}</td>
+            <td>${element.atomicNumber}</td>
+            <td>${element.group}</td>
+            <td>${element.period}</td>
+            <td>${element.block}</td>
+            <td>${element.valency}</td>
+            <td>${element.atomicMass}</td>
+            <td>${element.neutrons}</td>
+        </tr>
+    `;
 }
 
+nav.addEventListener("click", (e) => {
+
+    if (!e.target.matches("a")) return;
+
+    e.preventDefault();
+
+    const id = e.target.getAttribute("href").slice(1);
+    const row = document.getElementById(id);
+
+    row.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    row.classList.remove("highlight-row");
+
+    void row.offsetWidth;
+
+    row.classList.add("highlight-row");
+});
 </script>
 </body>
 </html>

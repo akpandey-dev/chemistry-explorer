@@ -5,7 +5,7 @@ A simple interactive Element Information datasheet built to make exploring chemi
 ## Features
 
 * Information for the first 40 chemical elements.
-* Displays important information for each element:
+* Displays:
     - Symbol
     - Atomic Number
     - Group
@@ -13,10 +13,15 @@ A simple interactive Element Information datasheet built to make exploring chemi
     - Block
     - Valency
     - Atomic Mass
-    - Neutron count
-* Built using plain HTML, CSS and JS.
-* UI auto generated via JS to keep HTML clean
-* Lightweight and fast-loading with no external dependencies.
-* Simple responsive layout that works on both desktop and mobile devices.
-* More features coming soon...
+    - Common isotope neutron count
+* Symbol navigation for quick access to any listed element
+* Highlight animation for selected row
+* Sticky table header for easier browsing
+* Responsive table layout for desktop and mobile devices
+* Entire table generated dynamically using JavaScript
+* Fully offline and dependency-free
 
+
+## License
+
+This project is open for learning, modification, and experimentation.
