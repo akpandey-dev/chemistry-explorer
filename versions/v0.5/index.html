@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Element Info</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: #d7fff1;
+    margin: 24px;
+    line-height: 1.5;
+    color: #222;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 20px 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #155;
+    background: rgba(255,255,255,.5);
+    border: 1px solid rgba(0,0,0,.15);
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: .2s;
+}
+
+nav a:hover {
+    background: #2c7ef7;
+    color: white;
+}
+
+h1{
+    text-align:center;
+}
+
+
+hr {
+    align-self: stretch;
+    border: none;
+    border-top: 1px solid #666;
+    margin: 15px 0;
+}
+
+.table-wrapper {
+    max-height: 80vh;
+    overflow: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+.table-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #4f8cff #d8f5ee;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #d8f5ee;
+    border-radius: 999px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #53b5ff, #2c7ef7);
+    border-radius: 999px;
+    border: 2px solid #d8f5ee;
+}
+
+#elements {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+#elements th,
+#elements td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #ececec;
+}
+
+#elements td:first-child {
+    font-weight: bold;
+}
+
+#elements thead th {
+    position: sticky;
+    top: 0;
+    background: #2c7ef7;
+    color: white;
+    font-weight: 600;
+    padding: 12px 14px;
+    text-align: left;
+    z-index: 5;
+}
+
+
+#elements tbody tr:nth-child(even) {
+    background: #f7fbff;
+}
+
+#elements tbody tr:nth-child(odd) {
+    background: white;
+}
+
+#elements tbody tr {
+    transition: background .15s;
+}
+
+#elements tbody tr:hover {
+    background: #d9ebff;
+}
+
+@keyframes flash-row {
+    0% {
+        background: #ffe066;
+    }
+
+    100% {
+        background: inherit;
+    }
+}
+
+.highlight-row {
+    animation: flash-row 2s ease;
+}
+
+.navigation{
+    border: 1px solid #d7fff1;
+    border-radius: 8px;
+    margin: 10px;
+    transition: 1s;
+    box-shadow: 2px 2px 2px black;
+}
+
+.navigation:hover{
+        border: 1px solid #58f8c0;
+}
+
+</style>
+</head>
+
+<body>
+<h1>Element Info</h1>
+
+<div class="navigation">
+<details>
+    <summary>Navigation button</summary>
+<nav id="nav"></nav>
+</details>
+</div>
+
+<div class="table-wrapper">
+<table id="elements">
+    <thead>
+        <tr>
+            <th>Element</th>
+            <th>Symbol</th>
+            <th>Atomic No.</th>
+            <th>Group</th>
+            <th>Period</th>
+            <th>Block</th>
+            <th>Valency</th>
+            <th>Atomic Mass</th>
+            <th>Neutrons</th>
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+</table>
+</div>
+
+<script>
+ 
+const elements = [
+    
+{
+id: "h",
+name: "Hydrogen",
+symbol: "H",
+atomicNumber: 1,
+group: 1,
+period: 1,
+block: "s",
+valency: "1",
+atomicMass: "1.008 u",
+neutrons: 0
+},
+{
+id: "he",
+name: "Helium",
+symbol: "He",
+atomicNumber: 2,
+group: 18,
+period: 1,
+block: "s",
+valency: "0",
+atomicMass: "4.0026 u",
+neutrons: 2
+},
+{
+id: "li",
+name: "Lithium",
+symbol: "Li",
+atomicNumber: 3,
+group: 1,
+period: 2,
+block: "s",
+valency: "1",
+atomicMass: "6.94 u",
+neutrons: 4
+},
+{
+id: "be",
+name: "Beryllium",
+symbol: "Be",
+atomicNumber: 4,
+group: 2,
+period: 2,
+block: "s",
+valency: "2",
+atomicMass: "9.0122 u",
+neutrons: 5
+},
+{
+id: "b",
+name: "Boron",
+symbol: "B",
+atomicNumber: 5,
+group: 13,
+period: 2,
+block: "p",
+valency: "3",
+atomicMass: "10.81 u",
+neutrons: 6
+},
+{
+id: "c",
+name: "Carbon",
+symbol: "C",
+atomicNumber: 6,
+group: 14,
+period: 2,
+block: "p",
+valency: "4",
+atomicMass: "12.011 u",
+neutrons: 6
+},
+{
+id: "n",
+name: "Nitrogen",
+symbol: "N",
+atomicNumber: 7,
+group: 15,
+period: 2,
+block: "p",
+valency: "3, 5",
+atomicMass: "14.007 u",
+neutrons: 7
+},
+{
+id: "o",
+name: "Oxygen",
+symbol: "O",
+atomicNumber: 8,
+group: 16,
+period: 2,
+block: "p",
+valency: "2",
+atomicMass: "15.999 u",
+neutrons: 8
+},
+{
+id: "f",
+name: "Fluorine",
+symbol: "F",
+atomicNumber: 9,
+group: 17,
+period: 2,
+block: "p",
+valency: "1",
+atomicMass: "18.998 u",
+neutrons: 10
+},
+{
+id: "ne",
+name: "Neon",
+symbol: "Ne",
+atomicNumber: 10,
+group: 18,
+period: 2,
+block: "p",
+valency: "0",
+atomicMass: "20.180 u",
+neutrons: 10
+},
+{
+id: "na",
+name: "Sodium",
+symbol: "Na",
+atomicNumber: 11,
+group: 1,
+period: 3,
+block: "s",
+valency: "1",
+atomicMass: "22.990 u",
+neutrons: 12
+},
+{
+id: "mg",
+name: "Magnesium",
+symbol: "Mg",
+atomicNumber: 12,
+group: 2,
+period: 3,
+block: "s",
+valency: "2",
+atomicMass: "24.305 u",
+neutrons: 12
+},
+{
+id: "al",
+name: "Aluminium",
+symbol: "Al",
+atomicNumber: 13,
+group: 13,
+period: 3,
+block: "p",
+valency: "3",
+atomicMass: "26.982 u",
+neutrons: 14
+},
+{
+id: "si",
+name: "Silicon",
+symbol: "Si",
+atomicNumber: 14,
+group: 14,
+period: 3,
+block: "p",
+valency: "4",
+atomicMass: "28.085 u",
+neutrons: 14
+},
+{
+id: "p",
+name: "Phosphorus",
+symbol: "P",
+atomicNumber: 15,
+group: 15,
+period: 3,
+block: "p",
+valency: "3, 5",
+atomicMass: "30.974 u",
+neutrons: 16
+},
+{
+id: "s",
+name: "Sulfur",
+symbol: "S",
+atomicNumber: 16,
+group: 16,
+period: 3,
+block: "p",
+valency: "2, 4, 6",
+atomicMass: "32.06 u",
+neutrons: 16
+},
+{
+id: "cl",
+name: "Chlorine",
+symbol: "Cl",
+atomicNumber: 17,
+group: 17,
+period: 3,
+block: "p",
+valency: "1, 3, 5, 7",
+atomicMass: "35.45 u",
+neutrons: 18
+},
+{
+id: "ar",
+name: "Argon",
+symbol: "Ar",
+atomicNumber: 18,
+group: 18,
+period: 3,
+block: "p",
+valency: "0",
+atomicMass: "39.948 u",
+neutrons: 22
+},
+{
+id: "k",
+name: "Potassium",
+symbol: "K",
+atomicNumber: 19,
+group: 1,
+period: 4,
+block: "s",
+valency: "1",
+atomicMass: "39.098 u",
+neutrons: 20
+},
+{
+id: "ca",
+name: "Calcium",
+symbol: "Ca",
+atomicNumber: 20,
+group: 2,
+period: 4,
+block: "s",
+valency: "2",
+atomicMass: "40.078 u",
+neutrons: 20
+},
+{
+id: "sc",
+name: "Scandium",
+symbol: "Sc",
+atomicNumber: 21,
+group: 3,
+period: 4,
+block: "d",
+valency: "3",
+atomicMass: "44.956 u",
+neutrons: 24
+},
+{
+id: "ti",
+name: "Titanium",
+symbol: "Ti",
+atomicNumber: 22,
+group: 4,
+period: 4,
+block: "d",
+valency: "2, 3, 4",
+atomicMass: "47.867 u",
+neutrons: 26
+},
+{
+id: "v",
+name: "Vanadium",
+symbol: "V",
+atomicNumber: 23,
+group: 5,
+period: 4,
+block: "d",
+valency: "2, 3, 4, 5",
+atomicMass: "50.942 u",
+neutrons: 28
+},
+{
+id: "cr",
+name: "Chromium",
+symbol: "Cr",
+atomicNumber: 24,
+group: 6,
+period: 4,
+block: "d",
+valency: "2, 3, 6",
+atomicMass: "51.996 u",
+neutrons: 28
+},
+{
+id: "mn",
+name: "Manganese",
+symbol: "Mn",
+atomicNumber: 25,
+group: 7,
+period: 4,
+block: "d",
+valency: "2, 4, 7",
+atomicMass: "54.938 u",
+neutrons: 30
+},
+{
+id: "fe",
+name: "Iron",
+symbol: "Fe",
+atomicNumber: 26,
+group: 8,
+period: 4,
+block: "d",
+valency: "2, 3",
+atomicMass: "55.845 u",
+neutrons: 30
+},
+{
+id: "co",
+name: "Cobalt",
+symbol: "Co",
+atomicNumber: 27,
+group: 9,
+period: 4,
+block: "d",
+valency: "2, 3",
+atomicMass: "58.933 u",
+neutrons: 32
+},
+{
+id: "ni",
+name: "Nickel",
+symbol: "Ni",
+atomicNumber: 28,
+group: 10,
+period: 4,
+block: "d",
+valency: "2",
+atomicMass: "58.693 u",
+neutrons: 31
+},
+{
+id: "cu",
+name: "Copper",
+symbol: "Cu",
+atomicNumber: 29,
+group: 11,
+period: 4,
+block: "d",
+valency: "1, 2",
+atomicMass: "63.546 u",
+neutrons: 35
+},
+{
+id: "zn",
+name: "Zinc",
+symbol: "Zn",
+atomicNumber: 30,
+group: 12,
+period: 4,
+block: "d",
+valency: "2",
+atomicMass: "65.38 u",
+neutrons: 35
+},
+{
+id: "ga",
+name: "Gallium",
+symbol: "Ga",
+atomicNumber: 31,
+group: 13,
+period: 4,
+block: "p",
+valency: "3",
+atomicMass: "69.723 u",
+neutrons: 39
+},
+{
+id: "ge",
+name: "Germanium",
+symbol: "Ge",
+atomicNumber: 32,
+group: 14,
+period: 4,
+block: "p",
+valency: "2, 4",
+atomicMass: "72.630 u",
+neutrons: 41
+},
+{
+id: "as",
+name: "Arsenic",
+symbol: "As",
+atomicNumber: 33,
+group: 15,
+period: 4,
+block: "p",
+valency: "3, 5",
+atomicMass: "74.922 u",
+neutrons: 42
+},
+{
+id: "se",
+name: "Selenium",
+symbol: "Se",
+atomicNumber: 34,
+group: 16,
+period: 4,
+block: "p",
+valency: "2, 4, 6",
+atomicMass: "78.971 u",
+neutrons: 45
+},
+{
+id: "br",
+name: "Bromine",
+symbol: "Br",
+atomicNumber: 35,
+group: 17,
+period: 4,
+block: "p",
+valency: "1, 3, 5, 7",
+atomicMass: "79.904 u",
+neutrons: 45
+},
+{
+id: "kr",
+name: "Krypton",
+symbol: "Kr",
+atomicNumber: 36,
+group: 18,
+period: 4,
+block: "p",
+valency: "0",
+atomicMass: "83.798 u",
+neutrons: 48
+},
+{
+id: "rb",
+name: "Rubidium",
+symbol: "Rb",
+atomicNumber: 37,
+group: 1,
+period: 5,
+block: "s",
+valency: "1",
+atomicMass: "85.468 u",
+neutrons: 48
+},
+{
+id: "sr",
+name: "Strontium",
+symbol: "Sr",
+atomicNumber: 38,
+group: 2,
+period: 5,
+block: "s",
+valency: "2",
+atomicMass: "87.62 u",
+neutrons: 50
+},
+{
+id: "y",
+name: "Yttrium",
+symbol: "Y",
+atomicNumber: 39,
+group: 3,
+period: 5,
+block: "d",
+valency: "3",
+atomicMass: "88.906 u",
+neutrons: 50
+},
+{
+id: "zr",
+name: "Zirconium",
+symbol: "Zr",
+atomicNumber: 40,
+group: 4,
+period: 5,
+block: "d",
+valency: "4",
+atomicMass: "91.224 u",
+neutrons: 51
+},
+{
+id: "nb",
+name: "Niobium",
+symbol: "Nb",
+atomicNumber: 41,
+group: 5,
+period: 5,
+block: "d",
+valency: "3, 5",
+atomicMass: "92.906 u",
+neutrons: 52
+},
+{
+id: "mo",
+name: "Molybdenum",
+symbol: "Mo",
+atomicNumber: 42,
+group: 6,
+period: 5,
+block: "d",
+valency: "2, 3, 4, 5, 6",
+atomicMass: "95.95 u",
+neutrons: 54
+},
+{
+id: "tc",
+name: "Technetium",
+symbol: "Tc",
+atomicNumber: 43,
+group: 7,
+period: 5,
+block: "d",
+valency: "4, 7",
+atomicMass: "98 u",
+neutrons: 55
+},
+{
+id: "ru",
+name: "Ruthenium",
+symbol: "Ru",
+atomicNumber: 44,
+group: 8,
+period: 5,
+block: "d",
+valency: "2, 3, 4, 6, 8",
+atomicMass: "101.07 u",
+neutrons: 57
+},
+{
+id: "rh",
+name: "Rhodium",
+symbol: "Rh",
+atomicNumber: 45,
+group: 9,
+period: 5,
+block: "d",
+valency: "1, 2, 3",
+atomicMass: "102.91 u",
+neutrons: 58
+},
+{
+id: "pd",
+name: "Palladium",
+symbol: "Pd",
+atomicNumber: 46,
+group: 10,
+period: 5,
+block: "d",
+valency: "2, 4",
+atomicMass: "106.42 u",
+neutrons: 60
+},
+{
+id: "ag",
+name: "Silver",
+symbol: "Ag",
+atomicNumber: 47,
+group: 11,
+period: 5,
+block: "d",
+valency: "1",
+atomicMass: "107.87 u",
+neutrons: 61
+},
+{
+id: "cd",
+name: "Cadmium",
+symbol: "Cd",
+atomicNumber: 48,
+group: 12,
+period: 5,
+block: "d",
+valency: "2",
+atomicMass: "112.41 u",
+neutrons: 66
+},
+{
+id: "in",
+name: "Indium",
+symbol: "In",
+atomicNumber: 49,
+group: 13,
+period: 5,
+block: "p",
+valency: "1, 3",
+atomicMass: "114.82 u",
+neutrons: 66
+},
+{
+id: "sn",
+name: "Tin",
+symbol: "Sn",
+atomicNumber: 50,
+group: 14,
+period: 5,
+block: "p",
+valency: "2, 4",
+atomicMass: "118.71 u",
+neutrons: 69
+},
+{
+id: "sb",
+name: "Antimony",
+symbol: "Sb",
+atomicNumber: 51,
+group: 15,
+period: 5,
+block: "p",
+valency: "3, 5",
+atomicMass: "121.76 u",
+neutrons: 70
+},
+{
+id: "te",
+name: "Tellurium",
+symbol: "Te",
+atomicNumber: 52,
+group: 16,
+period: 5,
+block: "p",
+valency: "2, 4, 6",
+atomicMass: "127.60 u",
+neutrons: 76
+},
+{
+id: "i",
+name: "Iodine",
+symbol: "I",
+atomicNumber: 53,
+group: 17,
+period: 5,
+block: "p",
+valency: "1, 3, 5, 7",
+atomicMass: "126.90 u",
+neutrons: 74
+},
+{
+id: "xe",
+name: "Xenon",
+symbol: "Xe",
+atomicNumber: 54,
+group: 18,
+period: 5,
+block: "p",
+valency: "0, 2, 4, 6, 8",
+atomicMass: "131.29 u",
+neutrons: 77
+},
+{
+id: "cs",
+name: "Cesium",
+symbol: "Cs",
+atomicNumber: 55,
+group: 1,
+period: 6,
+block: "s",
+valency: "1",
+atomicMass: "132.91 u",
+neutrons: 78
+},
+{
+id: "ba",
+name: "Barium",
+symbol: "Ba",
+atomicNumber: 56,
+group: 2,
+period: 6,
+block: "s",
+valency: "2",
+atomicMass: "137.33 u",
+neutrons: 81
+},
+{
+id: "la",
+name: "Lanthanum",
+symbol: "La",
+atomicNumber: 57,
+group: 3,
+period: 6,
+block: "d",
+valency: "3",
+atomicMass: "138.91 u",
+neutrons: 82
+},
+{
+id: "ce",
+name: "Cerium",
+symbol: "Ce",
+atomicNumber: 58,
+group: null,
+period: 6,
+block: "f",
+valency: "3, 4",
+atomicMass: "140.12 u",
+neutrons: 82
+},
+{
+id: "pr",
+name: "Praseodymium",
+symbol: "Pr",
+atomicNumber: 59,
+group: null,
+period: 6,
+block: "f",
+valency: "3, 4",
+atomicMass: "140.91 u",
+neutrons: 82
+},
+{
+id: "nd",
+name: "Neodymium",
+symbol: "Nd",
+atomicNumber: 60,
+group: null,
+period: 6,
+block: "f",
+valency: "3",
+atomicMass: "144.24 u",
+neutrons: 84
+},
+{
+id: "pm",
+name: "Promethium",
+symbol: "Pm",
+atomicNumber: 61,
+group: null,
+period: 6,
+block: "f",
+valency: "3",
+atomicMass: "145 u",
+neutrons: 84
+},
+{
+id: "sm",
+name: "Samarium",
+symbol: "Sm",
+atomicNumber: 62,
+group: null,
+period: 6,
+block: "f",
+valency: "2, 3",
+atomicMass: "150.36 u",
+neutrons: 88
+},
+{
+id: "eu",
+name: "Europium",
+symbol: "Eu",
+atomicNumber: 63,
+group: null,
+period: 6,
+block: "f",
+valency: "2, 3",
+atomicMass: "151.96 u",
+neutrons: 89
+},
+{
+id: "gd",
+name: "Gadolinium",
+symbol: "Gd",
+atomicNumber: 64,
+group: null,
+period: 6,
+block: "f",
+valency: "3",
+atomicMass: "157.25 u",
+neutrons: 93
+},
+{
+id: "tb",
+name: "Terbium",
+symbol: "Tb",
+atomicNumber: 65,
+group: null,
+period: 6,
+block: "f",
+valency: "3, 4",
+atomicMass: "158.93 u",
+neutrons: 94
+},
+{
+id: "dy",
+name: "Dysprosium",
+symbol: "Dy",
+atomicNumber: 66,
+group: null,
+period: 6,
+block: "f",
+valency: "3",
+atomicMass: "162.50 u",
+neutrons: 97
+},
+{
+id: "ho",
+name: "Holmium",
+symbol: "Ho",
+atomicNumber: 67,
+group: null,
+period: 6,
+block: "f",
+valency: "3",
+atomicMass: "164.93 u",
+neutrons: 98
+},
+{
+id: "er",
+name: "Erbium",
+symbol: "Er",
+atomicNumber: 68,
+group: null,
+period: 6,
+block: "f",
+valency: "3",
+atomicMass: "167.26 u",
+neutrons: 99
+},
+{
+id: "tm",
+name: "Thulium",
+symbol: "Tm",
+atomicNumber: 69,
+group: null,
+period: 6,
+block: "f",
+valency: "2, 3",
+atomicMass: "168.93 u",
+neutrons: 100
+},
+{
+id: "yb",
+name: "Ytterbium",
+symbol: "Yb",
+atomicNumber: 70,
+group: null,
+period: 6,
+block: "f",
+valency: "2, 3",
+atomicMass: "173.05 u",
+neutrons: 103
+},
+{
+id: "lu",
+name: "Lutetium",
+symbol: "Lu",
+atomicNumber: 71,
+group: 3,
+period: 6,
+block: "d",
+valency: "3",
+atomicMass: "174.97 u",
+neutrons: 104
+},
+{
+id: "hf",
+name: "Hafnium",
+symbol: "Hf",
+atomicNumber: 72,
+group: 4,
+period: 6,
+block: "d",
+valency: "4",
+atomicMass: "178.49 u",
+neutrons: 106
+},
+{
+id: "ta",
+name: "Tantalum",
+symbol: "Ta",
+atomicNumber: 73,
+group: 5,
+period: 6,
+block: "d",
+valency: "5",
+atomicMass: "180.95 u",
+neutrons: 108
+},
+{
+id: "w",
+name: "Tungsten",
+symbol: "W",
+atomicNumber: 74,
+group: 6,
+period: 6,
+block: "d",
+valency: "2, 3, 4, 5, 6",
+atomicMass: "183.84 u",
+neutrons: 110
+},
+{
+id: "re",
+name: "Rhenium",
+symbol: "Re",
+atomicNumber: 75,
+group: 7,
+period: 6,
+block: "d",
+valency: "2, 4, 6, 7",
+atomicMass: "186.21 u",
+neutrons: 111
+},
+{
+id: "os",
+name: "Osmium",
+symbol: "Os",
+atomicNumber: 76,
+group: 8,
+period: 6,
+block: "d",
+valency: "2, 3, 4, 6, 8",
+atomicMass: "190.23 u",
+neutrons: 114
+},
+{
+id: "ir",
+name: "Iridium",
+symbol: "Ir",
+atomicNumber: 77,
+group: 9,
+period: 6,
+block: "d",
+valency: "3, 4",
+atomicMass: "192.22 u",
+neutrons: 115
+},
+{
+id: "pt",
+name: "Platinum",
+symbol: "Pt",
+atomicNumber: 78,
+group: 10,
+period: 6,
+block: "d",
+valency: "2, 4",
+atomicMass: "195.08 u",
+neutrons: 117
+},
+{
+id: "au",
+name: "Gold",
+symbol: "Au",
+atomicNumber: 79,
+group: 11,
+period: 6,
+block: "d",
+valency: "1, 3",
+atomicMass: "196.97 u",
+neutrons: 118
+},
+{
+id: "hg",
+name: "Mercury",
+symbol: "Hg",
+atomicNumber: 80,
+group: 12,
+period: 6,
+block: "d",
+valency: "1, 2",
+atomicMass: "200.59 u",
+neutrons: 120
+},
+{
+id: "tl",
+name: "Thallium",
+symbol: "Tl",
+atomicNumber: 81,
+group: 13,
+period: 6,
+block: "p",
+valency: "1, 3",
+atomicMass: "204.38 u",
+neutrons: 123
+},
+{
+id: "pb",
+name: "Lead",
+symbol: "Pb",
+atomicNumber: 82,
+group: 14,
+period: 6,
+block: "p",
+valency: "2, 4",
+atomicMass: "207.2 u",
+neutrons: 126
+},
+{
+id: "bi",
+name: "Bismuth",
+symbol: "Bi",
+atomicNumber: 83,
+group: 15,
+period: 6,
+block: "p",
+valency: "3, 5",
+atomicMass: "208.98 u",
+neutrons: 126
+},
+{
+id: "po",
+name: "Polonium",
+symbol: "Po",
+atomicNumber: 84,
+group: 16,
+period: 6,
+block: "p",
+valency: "2, 4",
+atomicMass: "209 u",
+neutrons: 125
+},
+{
+id: "at",
+name: "Astatine",
+symbol: "At",
+atomicNumber: 85,
+group: 17,
+period: 6,
+block: "p",
+valency: "1, 3, 5, 7",
+atomicMass: "210 u",
+neutrons: 125
+},
+{
+id: "rn",
+name: "Radon",
+symbol: "Rn",
+atomicNumber: 86,
+group: 18,
+period: 6,
+block: "p",
+valency: "0, 2",
+atomicMass: "222 u",
+neutrons: 136
+},
+{
+id: "fr",
+name: "Francium",
+symbol: "Fr",
+atomicNumber: 87,
+group: 1,
+period: 7,
+block: "s",
+valency: "1",
+atomicMass: "223 u",
+neutrons: 136
+},
+{
+id: "ra",
+name: "Radium",
+symbol: "Ra",
+atomicNumber: 88,
+group: 2,
+period: 7,
+block: "s",
+valency: "2",
+atomicMass: "226 u",
+neutrons: 138
+},
+{
+id: "ac",
+name: "Actinium",
+symbol: "Ac",
+atomicNumber: 89,
+group: 3,
+period: 7,
+block: "d",
+valency: "3",
+atomicMass: "227 u",
+neutrons: 138
+},
+{
+id: "th",
+name: "Thorium",
+symbol: "Th",
+atomicNumber: 90,
+group: null,
+period: 7,
+block: "f",
+valency: "4",
+atomicMass: "232.04 u",
+neutrons: 142
+},
+{
+id: "pa",
+name: "Protactinium",
+symbol: "Pa",
+atomicNumber: 91,
+group: null,
+period: 7,
+block: "f",
+valency: "4, 5",
+atomicMass: "231.04 u",
+neutrons: 140
+},
+{
+id: "u",
+name: "Uranium",
+symbol: "U",
+atomicNumber: 92,
+group: null,
+period: 7,
+block: "f",
+valency: "3, 4, 5, 6",
+atomicMass: "238.03 u",
+neutrons: 146
+},
+{
+id: "np",
+name: "Neptunium",
+symbol: "Np",
+atomicNumber: 93,
+group: null,
+period: 7,
+block: "f",
+valency: "3, 4, 5, 6, 7",
+atomicMass: "237 u",
+neutrons: 144
+},
+{
+id: "pu",
+name: "Plutonium",
+symbol: "Pu",
+atomicNumber: 94,
+group: null,
+period: 7,
+block: "f",
+valency: "3, 4, 5, 6",
+atomicMass: "244 u",
+neutrons: 150
+},
+{
+id: "am",
+name: "Americium",
+symbol: "Am",
+atomicNumber: 95,
+group: null,
+period: 7,
+block: "f",
+valency: "2, 3, 4, 5, 6",
+atomicMass: "243 u",
+neutrons: 148
+},
+{
+id: "cm",
+name: "Curium",
+symbol: "Cm",
+atomicNumber: 96,
+group: null,
+period: 7,
+block: "f",
+valency: "3, 4",
+atomicMass: "247 u",
+neutrons: 151
+},
+{
+id: "bk",
+name: "Berkelium",
+symbol: "Bk",
+atomicNumber: 97,
+group: null,
+period: 7,
+block: "f",
+valency: "3, 4",
+atomicMass: "247 u",
+neutrons: 150
+},
+{
+id: "cf",
+name: "Californium",
+symbol: "Cf",
+atomicNumber: 98,
+group: null,
+period: 7,
+block: "f",
+valency: "2, 3",
+atomicMass: "251 u",
+neutrons: 153
+},
+{
+id: "es",
+name: "Einsteinium",
+symbol: "Es",
+atomicNumber: 99,
+group: null,
+period: 7,
+block: "f",
+valency: "2, 3",
+atomicMass: "252 u",
+neutrons: 153
+},
+{
+id: "fm",
+name: "Fermium",
+symbol: "Fm",
+atomicNumber: 100,
+group: null,
+period: 7,
+block: "f",
+valency: "2, 3",
+atomicMass: "257 u",
+neutrons: 157
+},
+{
+id: "md",
+name: "Mendelevium",
+symbol: "Md",
+atomicNumber: 101,
+group: null,
+period: 7,
+block: "f",
+valency: "2, 3",
+atomicMass: "258 u",
+neutrons: 157
+},
+{
+id: "no",
+name: "Nobelium",
+symbol: "No",
+atomicNumber: 102,
+group: null,
+period: 7,
+block: "f",
+valency: "2, 3",
+atomicMass: "259 u",
+neutrons: 157
+},
+{
+id: "lr",
+name: "Lawrencium",
+symbol: "Lr",
+atomicNumber: 103,
+group: 3,
+period: 7,
+block: "d",
+valency: "3",
+atomicMass: "266 u",
+neutrons: 163
+},
+{
+id: "rf",
+name: "Rutherfordium",
+symbol: "Rf",
+atomicNumber: 104,
+group: 4,
+period: 7,
+block: "d",
+valency: "4",
+atomicMass: "267 u",
+neutrons: 163
+},
+{
+id: "db",
+name: "Dubnium",
+symbol: "Db",
+atomicNumber: 105,
+group: 5,
+period: 7,
+block: "d",
+valency: "5",
+atomicMass: "268 u",
+neutrons: 163
+},
+{
+id: "sg",
+name: "Seaborgium",
+symbol: "Sg",
+atomicNumber: 106,
+group: 6,
+period: 7,
+block: "d",
+valency: "6",
+atomicMass: "269 u",
+neutrons: 163
+},
+{
+id: "bh",
+name: "Bohrium",
+symbol: "Bh",
+atomicNumber: 107,
+group: 7,
+period: 7,
+block: "d",
+valency: "7",
+atomicMass: "270 u",
+neutrons: 163
+},
+{
+id: "hs",
+name: "Hassium",
+symbol: "Hs",
+atomicNumber: 108,
+group: 8,
+period: 7,
+block: "d",
+valency: "2, 4, 6, 8",
+atomicMass: "277 u",
+neutrons: 169
+},
+{
+id: "mt",
+name: "Meitnerium",
+symbol: "Mt",
+atomicNumber: 109,
+group: 9,
+period: 7,
+block: "d",
+valency: "1, 3",
+atomicMass: "278 u",
+neutrons: 169
+},
+{
+id: "ds",
+name: "Darmstadtium",
+symbol: "Ds",
+atomicNumber: 110,
+group: 10,
+period: 7,
+block: "d",
+valency: "2, 4",
+atomicMass: "281 u",
+neutrons: 171
+},
+{
+id: "rg",
+name: "Roentgenium",
+symbol: "Rg",
+atomicNumber: 111,
+group: 11,
+period: 7,
+block: "d",
+valency: "1, 3",
+atomicMass: "282 u",
+neutrons: 171
+},
+{
+id: "cn",
+name: "Copernicium",
+symbol: "Cn",
+atomicNumber: 112,
+group: 12,
+period: 7,
+block: "d",
+valency: "2",
+atomicMass: "285 u",
+neutrons: 173
+},
+{
+id: "nh",
+name: "Nihonium",
+symbol: "Nh",
+atomicNumber: 113,
+group: 13,
+period: 7,
+block: "p",
+valency: "1, 3",
+atomicMass: "286 u",
+neutrons: 173
+},
+{
+id: "fl",
+name: "Flerovium",
+symbol: "Fl",
+atomicNumber: 114,
+group: 14,
+period: 7,
+block: "p",
+valency: "2, 4",
+atomicMass: "289 u",
+neutrons: 175
+},
+{
+id: "mc",
+name: "Moscovium",
+symbol: "Mc",
+atomicNumber: 115,
+group: 15,
+period: 7,
+block: "p",
+valency: "1, 3",
+atomicMass: "290 u",
+neutrons: 175
+},
+{
+id: "lv",
+name: "Livermorium",
+symbol: "Lv",
+atomicNumber: 116,
+group: 16,
+period: 7,
+block: "p",
+valency: "2, 4",
+atomicMass: "293 u",
+neutrons: 177
+},
+{
+id: "ts",
+name: "Tennessine",
+symbol: "Ts",
+atomicNumber: 117,
+group: 17,
+period: 7,
+block: "p",
+valency: "1, 3, 5, 7",
+atomicMass: "294 u",
+neutrons: 177
+},
+{
+id: "og",
+name: "Oganesson",
+symbol: "Og",
+atomicNumber: 118,
+group: 18,
+period: 7,
+block: "p",
+valency: "0",
+atomicMass: "294 u",
+neutrons: 176
+},
+];
+
+// Most of the data above is AI generated and can contain inaccuracies
+
+const nav = document.getElementById("nav");
+const tbody = document.querySelector("#elements tbody");
+
+for (const element of elements) {
+
+    nav.innerHTML += `<a href="#${element.id}">${element.symbol}</a>\n`;
+
+    tbody.innerHTML += `
+        <tr id="${element.id}">
+            <td>${element.name}</td>
+            <td>${element.symbol}</td>
+            <td>${element.atomicNumber}</td>
+            <td>${element.group}</td>
+            <td>${element.period}</td>
+            <td>${element.block}</td>
+            <td>${element.valency}</td>
+            <td>${element.atomicMass}</td>
+            <td>${element.neutrons}</td>
+        </tr>
+    `;
+}
+
+nav.addEventListener("click", (e) => {
+
+    if (!e.target.matches("a")) return;
+
+    e.preventDefault();
+
+    const id = e.target.getAttribute("href").slice(1);
+    const row = document.getElementById(id);
+
+    row.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    row.classList.remove("highlight-row");
+
+    void row.offsetWidth;
+
+    row.classList.add("highlight-row");
+});
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ Note: This project is intended as an educational and reference tool. The dataset
 
 ## Features
 
-* Information for the first 40 chemical elements
+* Information for the 118 chemical elements
 * Displays:
 
   * Symbol
@@ -28,6 +28,7 @@ Note: This project is intended as an educational and reference tool. The dataset
 * Entire table generated dynamically using JavaScript
 * Fully offline and dependency-free
 
+> **Note:** Element data was generated with AI assistance and may contain inaccuracies. Please verify critical information from reliable scientific sources.
 ---
 
 ## Project Structure
