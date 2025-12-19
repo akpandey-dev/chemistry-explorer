@@ -16,7 +16,7 @@ Search results can be viewed in either **brief** or **detailed** form.
 
 This version is provided in three different formats to support different use cases.
 
-### 1. Fully Self-Contained (single-file/)
+### 1. Fully Self-Contained (`single-file/`)
 
 **Chemistry_Explorer_Sheet_noServer.html**
 
@@ -29,7 +29,7 @@ This is the easiest way to use the project.
 
 ---
 
-### 2. Combined Frontend with Local JSON Server(single-file/)
+### 2. Combined Frontend with Local JSON Server(`single-file/`)
 
 **Chemistry_Explorer_Sheet.html**
 
@@ -39,7 +39,7 @@ This is the easiest way to use the project.
 
 ---
 
-### 3. Modular Frontend Structure(modular/)
+### 3. Modular Frontend Structure(`modular/`)
 
 **index.html + script.js + style.css**
 
