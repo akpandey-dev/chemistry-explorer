@@ -16,7 +16,7 @@ Search results can be viewed in either **brief** or **detailed** form.
 
 This version is provided in three different formats to support different use cases.
 
-### 1. Fully Self-Contained (Single File)
+### 1. Fully Self-Contained (single-file/)
 
 **Chemistry_Explorer_Sheet_noServer.html**
 
@@ -29,7 +29,7 @@ This is the easiest way to use the project.
 
 ---
 
-### 2. Combined Frontend with Local JSON Server
+### 2. Combined Frontend with Local JSON Server(single-file/)
 
 **Chemistry_Explorer_Sheet.html**
 
@@ -39,7 +39,7 @@ This is the easiest way to use the project.
 
 ---
 
-### 3. Modular Frontend Structure
+### 3. Modular Frontend Structure(modular/)
 
 **index.html + script.js + style.css**
 
@@ -54,7 +54,7 @@ This format is recommended for learning, customization, and further development.
 ## Data
 
 The element data is stored in `elements.json` and includes detailed properties for each element.  
-An additional copy of the JSON file is included for backup and reference purposes.
+It is an additional copy of the JSON file from the server directory and is included for backup and reference purposes.
 
 ---
 
