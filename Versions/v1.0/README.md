@@ -74,3 +74,5 @@ If you prefer not to use a local server, use the **fully self-contained** versio
 
 - Python cache files (`__pycache__`, `.pyc`) are intentionally excluded from version control
 - This version focuses on functionality and structure, not visual polish
+
+Note: This can be for learners. This can be incomplete. This can be yours too. There may be bugs and logic gaps, feel free to report.
