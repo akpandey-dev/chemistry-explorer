@@ -1,0 +1,76 @@
+# Chemistry Explorer Sheet — v1.0
+
+Version **v1.0** is the first stable release of the Chemistry Explorer Sheet project.
+
+It provides an interactive periodic table interface with a built-in search system that allows users to retrieve information about chemical elements using:
+
+- Atomic number  
+- Element symbol  
+- Element name  
+
+Search results can be viewed in either **brief** or **detailed** form.
+
+---
+
+## Available Formats
+
+This version is provided in three different formats to support different use cases.
+
+### 1. Fully Self-Contained (Single File)
+
+**Chemistry_Explorer_Sheet_noServer.html**
+
+- HTML, CSS, JavaScript, and element data are fully embedded
+- Requires no server or external files
+- Works offline
+- Suitable for mobile devices and quick distribution
+
+This is the easiest way to use the project.
+
+---
+
+### 2. Combined Frontend with Local JSON Server
+
+**Chemistry_Explorer_Sheet.html**
+
+- HTML, CSS, and JavaScript are combined
+- Element data is loaded from a JSON file
+- Requires a local server to serve `elements.json`
+
+---
+
+### 3. Modular Frontend Structure
+
+**index.html + script.js + style.css**
+
+- Same functionality as the combined frontend
+- HTML, CSS, and JavaScript are separated into individual files
+- Requires the JSON data file to be served locally
+
+This format is recommended for learning, customization, and further development.
+
+---
+
+## Data
+
+The element data is stored in `elements.json` and includes detailed properties for each element.  
+An additional copy of the JSON file is included for backup and reference purposes.
+
+---
+
+## Local JSON File Server
+
+This version includes a small Python-based local server located in the `JSON_file_server/` directory.
+
+- The server is preconfigured
+- Simply copy the directory and run the Python script
+- Once running, open the appropriate HTML file in your browser
+
+If you prefer not to use a local server, use the **fully self-contained** version instead.
+
+---
+
+## Notes
+
+- Python cache files (`__pycache__`, `.pyc`) are intentionally excluded from version control
+- This version focuses on functionality and structure, not visual polish

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemistry Documentation</title>
+
+  <style>
+    :root {
+      --chrome-bg: #2c2b2b;
+      --panel-bg: #1f1e1e;
+      --border-subtle: #2a2a2a;
+      --text: #ffffff;
+      --text-muted: #cfcfcf;
+      --accent: #00ff00;
+      --hover: #094771;
+    }
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      background-color: rgb(50, 48, 48);
+      color: white;
+      height: auto;
+      min-height: 100vh;
+      width: 100vw;
+      margin: auto;
+      padding: 5px;
+      font-family: Arial, sans-serif;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .allContainer {
+      height: 100%;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header {
+      background-color: transparent;
+      width: 60vw;
+      height: 12vh;
+      perspective: 1000px;
+      margin: 20px;
+    }
+    .heading {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .header:hover .heading {
+      transform: rotateY(180deg);
+    }
+    .heading-front {
+      background-color: #bbb;
+      color: black;
+      text-align: center;
+      position: absolute;
+      border-top-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border: 2px solid #2980b9;
+      margin: auto;
+      padding: 2px;
+    }
+    .heading-back {
+      background-color: #2980b9;
+      color: white;
+      transform: rotateY(180deg);
+      text-align: center;
+      position: absolute;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border: 2px solid #2980b9;
+      margin: auto;
+      padding: 2px;
+    }
+    .heading-front,
+    .heading-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+/* Periodic table grid */
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  gap: 6px;
+  padding: 10px;
+  justify-items: center;
+  max-width: 95%;
+  margin: 20px auto;
+}
+
+/* Element card */
+.element {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 8px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.element .period-label,
+.element .group-label {
+  position: absolute;
+  font-size: 0.5rem;
+  color: rgb(145, 10, 10);
+  opacity: 0.9;
+}
+
+.element .period-label {
+  left: 1px;
+}
+
+.element .group-label {
+  top: 2px;
+  left: 0px;
+}
+.element:hover {
+  transform: scale(1.08);
+  border-color: var(--accent);
+  background-color: var(--hover);
+}
+
+.symbol {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.number {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  color: black;
+}
+
+/* 📱 Responsive tweaks */
+@media (max-width: 1200px) {
+  .periodic-table {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .periodic-table {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .element {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .periodic-table {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .element {
+    width: 55px;
+    height: 55px;
+  }
+  .symbol {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .periodic-table {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+  .element {
+    width: 42px;
+    height: 42px;
+    padding: 6px;
+  }
+  .symbol {
+    font-size: 1rem;
+  }
+  .number {
+    font-size: 0.8rem;
+  }
+}
+
+
+.legend {
+  width: 90%;
+  max-width: 900px;
+  margin: 25px auto 40px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #00000055;
+}
+
+.legend h3 {
+  margin-bottom: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.legend-items1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  padding: 5px;
+  border: 1px solid rgb(79, 74, 74);
+  border-radius: 20px;
+}
+.legend-items2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  padding: 5px;
+  border: 1px solid rgb(79, 74, 74);
+  border-radius: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.legend-item span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border: 1px solid #555;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .legend-item {
+    font-size: 0.8rem;
+  }
+  .legend-item span {
+    width: 16px;
+    height: 16px;
+  }
+}
+.searchElement, .periodicTable{
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #00000055;
+}
+
+.headingTopic{
+  color: #b3b3ff;
+}
+.search-element{
+  width:90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+}
+.searchbar{
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+  width: 100%;
+  gap: 8px;
+  padding: 3px;
+  align-items: center;
+  justify-content: center;
+}
+
+#searchbox{
+  width: 45vw;
+  background-color: var(--border-subtle);
+  box-shadow: 2px 2px 2px black;
+  margin: auto;
+  color: white;
+  height: 3.5vh;
+
+}
+#searchselect{
+  background-color: var(--border-subtle);
+  width: 40vw;
+  height: 3.5vh;
+  box-shadow: 2px 2px 2px black;
+}
+#searchstyleselect{
+  background-color: var(--border-subtle);
+  width: 40vw;
+  height: 3.5vh;
+  box-shadow: 2px 2px 2px black;
+}
+#searchbtn{
+
+  background-color: var(--border-subtle);
+  width: 10vw;
+  height: 3.8vh;
+  box-shadow: 2px 2px 2px black;
+}
+
+.search-result{
+  background-color: var(--border-subtle);
+  width: 100%;
+  height: auto;
+  box-shadow: 2px 2px 2px black;
+}
+
+#clearbtn{
+  background-color: var(--border-subtle);
+  width: 30vw;
+  height: 3.8vh;
+  box-shadow: 2px 2px 2px black;
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="allContainer">
+    <div class="header">
+      <div class="heading">
+        <h4 class="heading-front">Chemistry Documentation</h4>
+        <h6 class="heading-back">Explore the fascinating world of chemistry!</h6>
+      </div>
+    </div>
+
+
+<div class="periodicTable">
+<h3 class="headingTopic">Periodic Table</h3>
+</div>
+
+<div class="periodic-table" id="periodic-table"></div>
+
+</div>
+
+
+<div class="legend">
+
+  <h3>Element Type Key</h3>
+  <div class="legend-items1">
+    <div class="legend-item"><span style="background:#a0e6ff;"></span>Nonmetals</div>
+    <div class="legend-item"><span style="background:#ffd580;"></span>Metalloids</div>
+    <div class="legend-item"><span style="background:#ff9e9e;"></span>Alkali Metals</div>
+    <div class="legend-item"><span style="background:#ffcc99;"></span>Alkaline Earth Metals</div>
+    <div class="legend-item"><span style="background:#c0ffc0;"></span>Transition Metals</div>
+    <div class="legend-item"><span style="background:#b3b3ff;"></span>Halogens</div>
+    <div class="legend-item"><span style="background:#e0b3ff;"></span>Noble Gases</div>
+    <div class="legend-item"><span style="background:#ff6666;"></span>Lanthanides</div>
+    <div class="legend-item"><span style="background:#66ff99;"></span>Actinides</div>
+    <div class="legend-item"><span style="background:#ffb3b3"></span>post-transition Metals</div>
+  </div>
+  <h3>Border Type Key</h3>
+  <div class="legend-items2">
+    <div class="legend-item"><span style="background:#00ffff"></span>Block S</div>
+    <div class="legend-item"><span style="background:#ff00ff"></span>Block P</div>
+    <div class="legend-item"><span style="background:#00ff00"></span>Block D</div>
+    <div class="legend-item"><span style="background:#ff8800"></span>Block F</div>
+  </div>
+  
+</div>
+
+
+<div class="searchElement">
+  <h3 class="headingTopic">Search an Element</h3>
+</div>
+
+<div class="search-element" id="search-element">
+
+  <div class="searchbar">
+    <input type="search" id="searchbox" placeholder="Type here...">
+    <button type="button" id="searchbtn">🔍</button>
+        <button type="button" id="clearbtn">Clear</button>
+  </div>
+
+
+  <div class="searchbar">
+    <select id="searchstyleselect" title="Select query style...">
+      <option value="brief">Brief</option>
+      <option value="detail">Detail</option>
+    </select>
+    <select id="searchselect" title="Select query method...">
+      <option value="atomicNo">Atomic No</option>
+      <option value="symbol">Symbol</option>
+      <option value="name">Name</option>
+    </select>
+  </div>
+
+  <div class="search-result" id="search-result">
+  </div>
+
+</div>
+
+
+<div id="element-popup" style="
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:#00000088;
+  backdrop-filter: blur(3px);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+">
+  <div id="popup-content" style="
+    background:#1e1e1e;
+    padding:20px;
+    width:320px;
+    border-radius:12px;
+    color:white;
+    box-shadow:0 0 12px black;
+  "></div>
+</div>
+
+
+
+<script>
+const colorMap = {
+  "nonmetal": "#a0e6ff",
+  "metalloid": "#ffd580",
+  "alkali metal": "#ff9e9e",
+  "alkaline earth metal": "#ffcc99",
+  "transition metal": "#c0ffc0",
+  "halogen": "#b3b3ff",
+  "noble gas": "#e0b3ff",
+  "lanthanide": "#ff6666",
+  "actinide": "#66ff99",
+  "post-transition metal": "#ffb3b3"
+};
+
+let allElements = []; // cache all elements
+
+async function loadElements() {
+  try {
+    const response = await fetch("http://localhost:8080/elements.json");
+    allElements = await response.json();
+    renderPeriodicTable(allElements);
+  } catch (error) {
+    console.error("❌ Error loading JSON:", error);
+  }
+}
+
+function renderPeriodicTable(elements) {
+  const table = document.getElementById("periodic-table");
+  table.innerHTML = "";
+
+  elements.forEach((el) => {
+    const cell = document.createElement("div");
+    cell.className = "element";
+
+    const category = (el.category || "").toLowerCase().trim();
+    const color = colorMap[category] || "var(--panel-bg)";
+    cell.style.backgroundColor = color;
+
+    const blockColors = {
+      s: "#00ffff",
+      p: "#ff00ff",
+      d: "#00ff00",
+      f: "#ff8800",
+    };
+    const borderColor = blockColors[el.block] || "#999";
+    cell.style.border = `2px solid ${borderColor}`;
+
+    cell.title = `${el.name} (${el.atomicMass})`;
+
+    cell.innerHTML = `
+      <div class="period-label">${el.period}</div>
+      <div class="group-label">${el.group}</div>
+      <div class="number">${el.atomicNumber}</div>
+      <div class="symbol">${el.symbol}</div>
+    `;
+
+    table.appendChild(cell);
+
+
+// RIGHT-CLICK = open popup
+cell.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  openPopup(el);
+});
+
+// LONG PRESS = open popup
+let pressTimer;
+cell.addEventListener("touchstart", () => {
+  pressTimer = setTimeout(() => openPopup(el), 500);
+});
+cell.addEventListener("touchend", () => clearTimeout(pressTimer));
+  });
+}
+
+// =========================
+// Popup System
+// =========================
+const popup = document.getElementById("element-popup");
+const popupContent = document.getElementById("popup-content");
+
+// Close popup when clicking outside it
+popup.addEventListener("click", (event) => {
+  if (event.target === popup) popup.style.display = "none";
+});
+
+function openPopup(el) {
+  popupContent.innerHTML = `
+    <h2 style="color:${colorMap[el.category.toLowerCase()] || 'white'};">
+      ${el.symbol} – ${el.name}
+    </h2>
+    <p><strong>Atomic No:</strong> ${el.atomicNumber}</p>
+    <p><strong>Atomic Mass:</strong> ${el.atomicMass}</p>
+    <p><strong>Valency:</strong> ${el.valency}</p>
+    <p><strong>Category:</strong> ${el.category}</p>
+    <p><strong>Block:</strong> ${el.block.toUpperCase()}</p>
+    <p><strong>Period:</strong> ${el.period}</p>
+    <p><strong>Group:</strong> ${el.group}</p>
+  `;
+
+  popup.style.display = "flex";
+}
+
+
+
+// 🔍 SEARCH FEATURE
+function searchElement() {
+  const query = document.getElementById("searchbox").value.trim().toLowerCase();
+  const method = document.getElementById("searchselect").value;
+
+  if (!query) {
+    renderPeriodicTable(allElements);
+    return;
+  }
+
+  const results = allElements.filter((el) => {
+    if (method === "name") return el.name.toLowerCase().includes(query);
+    if (method === "symbol") return el.symbol.toLowerCase() === query;
+    if (method === "atomicNo") return el.atomicNumber == query;
+  });
+
+  let resultDiv = document.getElementById("search-result");
+
+  if (results.length === 0) {
+    resultDiv.innerHTML = `<p style="padding:8px;color:red;">No element found!</p>`;
+    renderPeriodicTable(allElements);
+    return;
+  }
+
+
+  const styleSearch = document.getElementById("searchstyleselect").value;
+
+
+  if (styleSearch == "brief"){
+    // show summary
+  resultDiv.innerHTML = results
+    .map(
+      (el) => `
+      <div style="padding:8px;border-bottom:1px solid #333;">
+        <strong>${el.name}</strong> (${el.symbol})<br>
+        Atomic No: ${el.atomicNumber}<br>
+        Atomic Mass: ${el.atomicMass}<br>
+        Valency: ${el.valency}<br>
+        Category: ${el.category}<br>
+        Block: ${el.block.toUpperCase()}
+      </div>`
+    )
+    .join("");
+
+
+  };
+
+  if (styleSearch == "detail"){
+  // show summary
+  resultDiv.innerHTML = results
+    .map(
+      (el) => `
+      <div style="padding:8px;border-bottom:1px solid #333;">
+        <strong>${el.name}</strong> (${el.symbol})<br>
+        Neutrons: ${el.neutrons}<br>
+        Atomic No: ${el.atomicNumber}<br>
+        Atomic Mass: ${el.atomicMass}<br>
+        Atomic Radius: ${el.atomicRadius}<br>
+        Ionic Radius: ${el.ionicRadius}<br>
+        Valency: ${el.valency}<br>
+        Atomicity : ${el.atomicity}<br>
+        Molecular Mass: ${el.molecularMass}<br>
+        Category: ${el.category}<br>
+        Phase: ${el.phase}<br>
+        Standard State: ${el.standardState}<br>
+        Color: ${el.color}<br>
+        Block: ${el.block.toUpperCase()}<br>
+        Period: ${el.period}<br>
+        Group: ${el.group}<br>
+        Density: ${el.density}<br>
+        Melting Point: ${el.meltingPoint}<br>
+        Boiling Point: ${el.boilingPoint}<br>
+        Electron Configuration: ${el.electronConfiguration}<br>
+        Electro-Negativity: ${el.electronegativity}<br>
+        Covalent Radius: ${el.covalentRadius}<br>
+        Ionization Energy: ${el.ionizationEnergy}<br>
+        Electron Affinity: ${el.electronAffinity}<br>
+        Oxidation States: ${el.oxidationStates}<br>
+        Bonding Type: ${el.bondingType}<br>
+        Crystal Structure: ${el.crystalStructure}<br>
+        Isotopes: ${el.isotopes}<br>
+        Radioactive: ${el.radioactive}<br>
+        Toxicity: ${el.toxicity}<br>
+        Occurrence: ${el.naturalOccurrence}<br>
+        Origin: ${el.naturalOrManMade}<br>
+        Discovered-by: ${el.discoveredBy}<br>
+        Discovered-in: ${el.discoveryYear}<br>
+        Uses: ${el.uses}<br>
+      </div>`
+    )
+    .join("");
+    }
+document.getElementById("clearbtn").style.color = "red";
+
+}
+document.getElementById("searchbtn").addEventListener("click", searchElement);
+document.getElementById("searchbox").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") searchElement();
+});
+
+
+document.getElementById("clearbtn").addEventListener("click", ()=>{   
+    document.getElementById("search-result").innerHTML = '';
+    document.getElementById("searchbox").value = '';
+    document.getElementById("searchselect").selectedIndex = 0 ;
+    document.getElementById("searchstyleselect").selectedIndex = 0;
+    document.getElementById("clearbtn").style.color = "black";
+    
+
+});
+
+
+loadElements();
+
+
+/*There may be some inaccuracy in the information. So please verify before use.*/
+//Details on elements are generated by AI and thus may be inaccurate.
+</script>
+
+
+</body>
+</html>
