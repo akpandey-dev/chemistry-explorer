@@ -26,6 +26,7 @@ Note: This project is intended as an educational and reference tool. The dataset
 * Sticky table header for easier browsing
 * Responsive table layout for desktop and mobile devices
 * Entire table generated dynamically using JavaScript
+* Periodic table picture
 * Fully offline and dependency-free
 
 > **Note:** Element data was generated with AI assistance and may contain inaccuracies. Please verify critical information from reliable scientific sources.
