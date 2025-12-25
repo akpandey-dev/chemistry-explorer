@@ -55,93 +55,74 @@ hr {
     margin-top: 20px;
 }
 
-.table-wrapper {
-    max-height: 80vh;
-    overflow: auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.15);
-    border: 1px solid rgba(0,0,0,.15);
-}
-
-.table-wrapper {
-    scrollbar-width: thin;
-    scrollbar-color: #4f8cff #d8f5ee;
-}
-
-.table-wrapper::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-.table-wrapper::-webkit-scrollbar-track {
-    background: #d8f5ee;
-    border-radius: 999px;
-}
-
-.table-wrapper::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #53b5ff, #2c7ef7);
-    border-radius: 999px;
-    border: 2px solid #d8f5ee;
-}
-
 #elements {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
 }
 
-
-#elements th,
-#elements td {
-    padding: 10px 14px;
-    border-bottom: 1px solid #ececec;
-}
-
-#elements td:first-child {
-    font-weight: bold;
-}
-
-#elements thead th {
-    position: sticky;
-    top: 0;
-    background: #2c7ef7;
-    color: white;
-    font-weight: 600;
-    padding: 12px 14px;
-    text-align: left;
-    z-index: 5;
-}
-
-
-#elements tbody tr:nth-child(even) {
-    background: #f7fbff;
-}
-
-#elements tbody tr:nth-child(odd) {
+.element-card {
     background: white;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    transition: .2s;
 }
 
-#elements tbody tr {
-    transition: background .15s;
+.element-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.15);
 }
 
-#elements tbody tr:hover {
-    background: #d9ebff;
+.element-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-@keyframes flash-row {
-    0% {
-        background: #ffe066;
+.element-symbol {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c7ef7;
+}
+
+.element-number {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.element-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.element-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px 10px;
+}
+
+.element-info strong {
+    color: #155;
+}
+
+
+@keyframes highlight {
+    from {
+        box-shadow: 0 0 0 4px gold, 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
-    100% {
-        background: inherit;
+    to {
+        box-shadow: 0 6px 20px rgba(0 ,0 ,0 , 0.08);
     }
 }
 
-.highlight-row {
-    animation: flash-row 2s ease;
+.highlight-card {
+    animation: highlight 1.5s ease;
 }
 
 .navigation{
@@ -169,25 +150,7 @@ hr {
 </details>
 </div>
 
-<div class="table-wrapper">
-<table id="elements">
-    <thead>
-        <tr>
-            <th>Element</th>
-            <th>Symbol</th>
-            <th>Atomic No.</th>
-            <th>Group</th>
-            <th>Period</th>
-            <th>Block</th>
-            <th>Valency</th>
-            <th>Atomic Mass</th>
-            <th>Neutrons</th>
-        </tr>
-    </thead>
-
-    <tbody></tbody>
-</table>
-</div>
+<div id="elements"></div>
 
 <img id="periodic-table" src="https://raw.githubusercontent.com/akpandey-dev/elements-info/refs/heads/main/versions/v0.6/periodic-table.png" alt="Periodic Table">
 
@@ -1616,47 +1579,50 @@ neutrons: 176
 // Most of the data above is AI generated and can contain inaccuracies
 
 const nav = document.getElementById("nav");
-const tbody = document.querySelector("#elements tbody");
+const container = document.getElementById("elements");
 
 for (const element of elements) {
 
     nav.innerHTML += `<a href="#${element.id}">${element.symbol}</a>\n`;
 
-    tbody.innerHTML += `
-        <tr id="${element.id}">
-            <td>${element.name}</td>
-            <td>${element.symbol}</td>
-            <td>${element.atomicNumber}</td>
-            <td>${element.group}</td>
-            <td>${element.period}</td>
-            <td>${element.block}</td>
-            <td>${element.valency}</td>
-            <td>${element.atomicMass}</td>
-            <td>${element.neutrons}</td>
-        </tr>
-    `;
+container.innerHTML += `
+<div class="element-card" id="${element.id}">
+    <div class="element-header">
+        <div class="element-symbol">${element.symbol}</div>
+        <div class="element-number">#${element.atomicNumber}</div>
+    </div>
+
+    <div class="element-name">${element.name}</div>
+
+    <div class="element-info">
+        <strong>Group</strong><span>${element.group ?? "-"}</span>
+        <strong>Period</strong><span>${element.period}</span>
+        <strong>Block</strong><span>${element.block}</span>
+        <strong>Valency</strong><span>${element.valency}</span>
+        <strong>Atomic Mass</strong><span>${element.atomicMass}</span>
+        <strong>Neutrons</strong><span>${element.neutrons}</span>
+    </div>
+</div>
+`;
 }
 
 nav.addEventListener("click", (e) => {
-
     if (!e.target.matches("a")) return;
-
     e.preventDefault();
 
     const id = e.target.getAttribute("href").slice(1);
-    const row = document.getElementById(id);
+    const card = document.getElementById(id);
 
-    row.scrollIntoView({
+    card.scrollIntoView({
         behavior: "smooth",
         block: "center"
     });
 
-    row.classList.remove("highlight-row");
-
-    void row.offsetWidth;
-
-    row.classList.add("highlight-row");
+    card.classList.remove("highlight-card");
+    void card.offsetWidth;
+    card.classList.add("highlight-card");
 });
+
 </script>
 </body>
 </html>

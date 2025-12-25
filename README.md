@@ -1,17 +1,17 @@
 # Element Info
 
 A lightweight, browser-based chemical element reference built using pure HTML, CSS, and JavaScript.
-It provides quick access to important information about chemical elements through a clean, searchable table interface. Browse elements using the navigation bar or scroll through the dataset with a sticky table header.
+It provides quick access to important information about chemical elements through a clean, card-based interface. Browse elements using the navigation bar or scroll through the collection of element cards.
 
 Designed as a compact, dependency-free reference tool that works entirely offline without external libraries or frameworks.
 
-Note: This project is intended as an educational and reference tool. The dataset is currently under development and will continue to expand with additional elements and properties.
+> **Note:** This project is intended as an educational and reference tool. The dataset is currently under development and will continue to expand with additional elements and properties.
 
 ---
 
 ## Features
 
-* Information for the 118 chemical elements
+* Information for all 118 chemical elements
 * Displays:
 
   * Symbol
@@ -23,13 +23,13 @@ Note: This project is intended as an educational and reference tool. The dataset
   * Atomic Mass
   * Common isotope neutron count
 * Symbol navigation for quick access to any listed element
-* Sticky table header for easier browsing
-* Responsive table layout for desktop and mobile devices
-* Entire table generated dynamically using JavaScript
+* Responsive card layout for desktop and mobile devices
+* All element cards generated dynamically using JavaScript
 * Periodic table picture
 * Fully offline and dependency-free
 
 > **Note:** Element data was generated with AI assistance and may contain inaccuracies. Please verify critical information from reliable scientific sources.
+
 ---
 
 ## Project Structure
@@ -49,9 +49,9 @@ All development versions are stored inside the `versions` directory to keep the 
 
 No installation required.
 
-1. Navigate to a version inside the `versions` directory
-2. Open the HTML file in any modern browser
-3. Browse the available chemical elements
+1. Navigate to a version inside the `versions` directory.
+2. Open the HTML file in any modern browser.
+3. Browse the available chemical elements.
 
 ---
 
