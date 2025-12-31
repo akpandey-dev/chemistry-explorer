@@ -38,10 +38,16 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
 element-info/
 ├─ README.md
 ├─ .gitignore
-└─ versions/
+└─ element-info/
+   ├─ modular/
+   └─ standalone/
+
 ```
 
-All development versions are stored inside the `versions` directory to keep the repository organized and maintain version history.
+The project is available in two versions:
+
+* **modular** — Separate HTML, CSS, and JavaScript files for development.
+* **standalone** — A single self-contained HTML file for easy offline use and distribution.
 
 ---
 
@@ -49,9 +55,15 @@ All development versions are stored inside the `versions` directory to keep the 
 
 No installation required.
 
-1. Navigate to a version inside the `versions` directory.
-2. Open the HTML file in any modern browser.
-3. Browse the available chemical elements.
+### Modular version
+
+1. Navigate to `modular/`.
+2. Open `index.html` in any modern browser.
+
+### Standalone version
+
+1. Navigate to `standalone/`.
+2. Open `element-info.html` in any modern browser.
 
 ---
 
