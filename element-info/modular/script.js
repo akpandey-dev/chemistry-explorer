@@ -1466,3 +1466,15 @@ nav.addEventListener("click", (e) => {
     void card.offsetWidth;
     card.classList.add("highlight-card");
 });
+
+
+
+function scrollToTop(){
+window.scrollTo({
+  top: 0,
+  left: 0,
+  behavior: 'smooth'
+});
+
+
+}

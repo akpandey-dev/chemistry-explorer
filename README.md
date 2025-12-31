@@ -27,6 +27,7 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
 * All element cards generated dynamically using JavaScript
 * Periodic table picture
 * Fully offline and dependency-free
+* Scroll to top button
 
 > **Note:** Element data was generated with AI assistance and may contain inaccuracies. Please verify critical information from reliable scientific sources.
 

@@ -8,11 +8,11 @@ body {
 }
 
 nav {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     justify-content: center;
     gap: 6px;
     margin: 20px 0;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 0.2fr));
 }
 
 nav a {
@@ -127,4 +127,30 @@ hr {
 
 .navigation:hover{
         border: 1px solid #58f8c0;
+}
+
+@media (min-width: 500px) {
+    #elements {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 800px) {
+    #elementsr {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+@media (min-width: 1200px) {
+    #elements {
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+}
+
+#scroll-to-top{
+    position: fixed;
+    aspect-ratio: 1;
+    right: 10px;
+    bottom: 10px;
+    background-color: #2c7ef7;
+    border: 1px solid black;
+    border-radius: 4px;
 }
