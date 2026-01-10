@@ -96,6 +96,12 @@ hr {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 5px 10px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.element-info::-webkit-scrollbar{
+    display: none;
 }
 
 .element-info strong {

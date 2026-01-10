@@ -22,6 +22,7 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
   * Valency
   * Atomic Mass
   * Common isotope neutron count
+* View more option with additional details
 * Symbol navigation for quick access to any listed element
 * Responsive card layout for desktop and mobile devices
 * All element cards generated dynamically using JavaScript
