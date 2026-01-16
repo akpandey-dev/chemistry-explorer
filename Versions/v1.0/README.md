@@ -70,6 +70,48 @@ If you prefer not to use a local server, use the **fully self-contained** versio
 
 ---
 
+## Core Functionality
+
+- Contains a dynamic periodic table
+- Colours used for enhanced visibility
+- Legend given below to map terms
+- Hold or double click elements in the periodic table to see a brief detail instantly
+- Search system to find easily
+- Search using Atomic number, Symbol or name
+- Get search result in brief or detailed form
+- 36 different properties for each elements
+
+---
+
+## Browser Compatibility
+
+Tested on modern Chromium browsers like Chrome, Firefox, etc.
+Tested on Edge and Brave also.
+
+---
+
+## Design Notes
+
+- No external libraries or frameworks
+- A server needed sometimes as per the build distribution
+- Emphasis on direct DOM manipulation
+- Some features and UI designs are incomplete
+
+---
+
+## Limitations
+
+- Not 100% accurate chemical data(there may be some inaccuracies)
+- Not live data information
+- Not perfect search system (yet)
+
+---
+## Version Status
+
+✔ Stable  
+✔ Feature-complete for initial release  
+✔ Suitable for personal use
+
 ## Notes
 
 - Python cache files (`__pycache__`, `.pyc`) are intentionally excluded from version control
