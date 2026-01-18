@@ -1,6 +1,6 @@
-# Chemistry Explorer Sheet — v1.0
+# Chemistry Explorer — v1.0
 
-Version **v1.0** is the first stable release of the Chemistry Explorer Sheet project.
+Version **v1.0** is the first stable release of the Chemistry Explorer project.
 
 It provides an interactive periodic table interface with a built-in search system that allows users to retrieve information about chemical elements using:
 
@@ -18,7 +18,7 @@ This version is provided in three different formats to support different use cas
 
 ### 1. Fully Self-Contained (`single-file/`)
 
-**Chemistry_Explorer_Sheet_noServer.html**
+**chemistry-explorer-no-server.html**
 
 - HTML, CSS, JavaScript, and element data are fully embedded
 - Requires no server or external files
@@ -31,7 +31,7 @@ This is the easiest way to use the project.
 
 ### 2. Combined Frontend with Local JSON Server(`single-file/`)
 
-**Chemistry_Explorer_Sheet.html**
+**chemistry-explorer.html**
 
 - HTML, CSS, and JavaScript are combined
 - Element data is loaded from a JSON file
@@ -60,7 +60,7 @@ It is an additional copy of the JSON file from the server directory and is inclu
 
 ## Local JSON File Server
 
-This version includes a small Python-based local server located in the `JSON_file_server/` directory.
+This version includes a small Python-based local server located in the `json-file-server/` directory.
 
 - The server is preconfigured
 - Simply copy the directory and run the Python script
