@@ -1,36 +1,64 @@
 # Element Info
 
-A lightweight, browser-based chemical element reference built using pure HTML, CSS, and JavaScript.
-It provides quick access to important information about chemical elements through a clean, card-based interface. Browse elements using the navigation bar or scroll through the collection of element cards.
+A lightweight, browser-based chemical element reference built with pure HTML, CSS, and JavaScript.
+
+Element Info provides quick access to detailed information about chemical elements through a clean, responsive, card-based interface. Browse using the symbol navigation bar or scroll through the collection of element cards.
 
 Designed as a compact, dependency-free reference tool that works entirely offline without external libraries or frameworks.
 
-> **Note:** This project is intended as an educational and reference tool. The dataset is currently under development and will continue to expand with additional elements and properties.
+> **Note:** This project is intended for educational and reference purposes. The dataset is continuously being expanded and refined.
 
 ---
 
 ## Features
 
-* Information for all 118 chemical elements
-* Displays:
+* Information for all **118 officially recognized elements**
+* Includes **experimental elements 119 (Ununennium)** and **120 (Unbinilium)** as theoretical entries
+* Displays essential information:
 
   * Symbol
+  * Name
   * Atomic Number
   * Group
   * Period
   * Block
   * Valency
   * Atomic Mass
-  * Common isotope neutron count
-* View more option with additional details
-* Symbol navigation for quick access to any listed element
-* Responsive card layout for desktop and mobile devices
-* All element cards generated dynamically using JavaScript
-* Periodic table picture
-* Fully offline and dependency-free
-* Scroll to top button
+  * Neutron Count
+* Expandable **More Information** section containing additional scientific properties such as:
 
-> **Note:** Element data was generated with AI assistance and may contain inaccuracies. Please verify critical information from reliable scientific sources.
+  * Category
+  * Electron Configuration
+  * Phase
+  * Standard State
+  * Oxidation States
+  * Electronegativity
+  * Atomic, Ionic, and Covalent Radii
+  * Ionization Energy
+  * Electron Affinity
+  * Density
+  * Melting and Boiling Points
+  * Bonding Type
+  * Crystal Structure
+  * Color
+  * Discovery Information
+  * Natural Occurrence
+  * Radioactivity
+  * Toxicity
+  * Uses
+  * Isotopes
+  * Molecular Mass
+  * Atomicity
+* Fast symbol-based navigation
+* Responsive card layout for desktop and mobile devices
+* Smooth scrolling with element highlighting
+* Scroll-to-top button
+* Dynamically generated interface using JavaScript
+* Periodic table reference image
+* Fully offline
+* No external libraries or dependencies
+
+> **Note:** Some scientific data—particularly for recently discovered, synthetic, and theoretical elements—was generated or supplemented using AI assistance and may contain inaccuracies. Always verify important scientific information using authoritative sources.
 
 ---
 
@@ -43,31 +71,58 @@ element-info/
 └─ element-info/
    ├─ modular/
    └─ standalone/
-
 ```
 
 The project is available in two versions:
 
-* **modular** — Separate HTML, CSS, and JavaScript files for development.
-* **standalone** — A single self-contained HTML file for easy offline use and distribution.
+* **modular** — Separate HTML, CSS, JavaScript, and data files intended for development and customization.
+* **standalone** — A single self-contained HTML file for convenient offline use and distribution.
 
 ---
 
 ## Usage
 
-No installation required.
+No installation is required.
 
-### Modular version
+### Modular Version
 
-1. Navigate to `modular/`.
-2. Open `index.html` in any modern browser.
+The modular version separates the project into multiple files:
 
-### Standalone version
+* `index.html`
+* `style.css`
+* `script.js`
 
-1. Navigate to `standalone/`.
-2. Open `element-info.html` in any modern browser.
+Benefits:
+
+* Easier maintenance
+* Cleaner code organization
+* Simpler debugging
+* Better scalability for future features
 
 ---
+
+### Standalone Version
+
+The standalone version packages everything into a single HTML file.
+
+Benefits:
+
+* Easy to share
+* No setup required
+* Convenient for quick testing
+* Portable and self-contained
+
+---
+
+## Goals
+
+Provide a lightweight, offline, and easy-to-use reference for chemical elements while keeping the project simple, fast, and dependency-free.
+
+The dataset is not yet 100% verified. If you find inaccuracies or have improvements, contributions are always welcome.
+
+
+---
+
 
 ## Technology Stack
 
@@ -79,4 +134,4 @@ No installation required.
 
 ## License
 
-This project is open for learning, modification, and experimentation.
+This project is open for learning, modification, experimentation, and personal use.
