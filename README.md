@@ -68,15 +68,16 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
 element-info/
 ├─ README.md
 ├─ .gitignore
-└─ element-info/
-   ├─ modular/
-   └─ standalone/
+├─ LICXENSE
+├─ index.html 
+├─ src/
+└─ dist/
 ```
 
 The project is available in two versions:
 
-* **modular** — Separate HTML, CSS, JavaScript, and data files intended for development and customization.
-* **standalone** — A single self-contained HTML file for convenient offline use and distribution.
+* **src** — Separate HTML, CSS, JavaScript, and data files intended for development and customization.
+* **dist** — A single self-contained HTML file for convenient offline use and distribution.
 
 ---
 
@@ -84,7 +85,7 @@ The project is available in two versions:
 
 No installation is required.
 
-### Modular Version
+### Src Version
 
 The modular version separates the project into multiple files:
 
@@ -101,7 +102,7 @@ Benefits:
 
 ---
 
-### Standalone Version
+### Dist Version
 
 The standalone version packages everything into a single HTML file.
 
