@@ -1,65 +1,68 @@
 # Periodic Table
 
-A lightweight, browser-based chemical element reference built with pure HTML, CSS, and JavaScript.
+An interactive, browser-based chemical element reference that allows users to explore the periodic table and view detailed information about chemical elements.
 
-Periodic Table provides quick access to detailed information about chemical elements through a clean, responsive, cell +  card-based interface. Browse using the cells of elements.
+Periodic Table provides a lightweight reference environment inside the browser, enabling quick exploration of element properties through a responsive periodic table and dynamically generated information cards.
 
-Designed as a compact, dependency-free reference tool that works entirely offline without external libraries or frameworks.
+---
 
-> **Note:** This project is intended for educational and reference purposes. The dataset is continuously being expanded and refined.
+⚠️ Disclaimer
+This project is intended for educational and experimental purposes only. It is not a substitute for authoritative scientific references. Some dataset entries, particularly synthetic and theoretical elements, may contain inaccuracies.
+
+---
+
+## Usage
+
+### Option 1 — Quick Use (Recommended)
+
+1. Download `dist/periodic-table.html`
+2. Open in any browser
+3. Select an element from the periodic table
+
+* Works offline.
+* No installation required.
+
+---
+
+### Option 2 — Development Mode
+
+1. Clone the repository
+2. Open:
+
+```text
+src/index.html
+```
+
+3. Edit files in `src/`
+
+Recommended for learning, experimentation, and development.
 
 ---
 
 ## Features
 
-* Information for all **118 officially recognized elements**
-* Includes **experimental elements 119 (Ununennium)** and **120 (Unbinilium)** as theoretical entries
-* Includes a dynamic periodic table
-* Displays essential information when clicked on a cell:
-
-  * Symbol
-  * Name
-  * Atomic Number
-  * Group
-  * Period
-  * Block
-  * Valency
-  * Atomic Mass
-  * Neutron Count
-* Expandable **More Information** section containing additional scientific properties such as:
-
-  * Category
-  * Electron Configuration
-  * Phase
-  * Standard State
-  * Oxidation States
-  * Electronegativity
-  * Atomic, Ionic, and Covalent Radii
-  * Ionization Energy
-  * Electron Affinity
-  * Density
-  * Melting and Boiling Points
-  * Bonding Type
-  * Crystal Structure
-  * Color
-  * Discovery Information
-  * Natural Occurrence
-  * Radioactivity
-  * Toxicity
-  * Uses
-  * Isotopes
-  * Molecular Mass
-  * Atomicity
-* Fast cell-based navigation
-* Responsive card and cell layout for desktop and mobile devices
-* Smooth scrolling
+* Information for all 118 officially recognized elements
+* Experimental/theoretical entries for elements 119 and 120
+* Interactive periodic table
+* Responsive element cells for desktop and mobile devices
+* Element details displayed when a cell is selected
+* Atomic number, symbol, name, group, period, and block information
+* Valency, atomic mass, and neutron count
+* Expandable additional information section
+* Electron configuration and oxidation states
+* Atomic, ionic, and covalent radii
+* Ionization energy and electron affinity
+* Density, melting point, and boiling point
+* Bonding type and crystal structure
+* Discovery information
+* Natural occurrence and radioactivity information
+* Toxicity and common uses
+* Isotope, atomicity, and molecular mass information
+* Smooth element navigation
 * Scroll-to-top button
 * Dynamically generated interface using JavaScript
-* Periodic table
+* Lightweight and dependency-free
 * Fully offline
-* No external libraries or dependencies
-
-> **Note:** Some scientific data—particularly for recently discovered, synthetic, and theoretical elements—was generated or supplemented using AI assistance and may contain inaccuracies. Always verify important scientific information using authoritative sources.
 
 ---
 
@@ -67,73 +70,80 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
 
 ```text
 periodic-table/
-├─ README.md
-├─ .gitignore
-├─ LICXENSE
-├─ index.html 
-├─ src/
-└─ dist/
+│
+├── index.html              # Entry / landing page
+│
+├── src/                    # Development source code
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+│
+├── dist/                   # Standalone version
+│   └── periodic-table.html # Single-file app
+│
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
-The project is available in two versions:
-
-* **src** — Separate HTML, CSS, JavaScript, and data files intended for development and customization.
-* **dist** — A single self-contained HTML file for convenient offline use and distribution.
-
 ---
 
-## Usage
+## Project Overview
 
-No installation is required.
+This project uses two modes:
 
-### Src Version
+### Development Mode
 
-The modular version separates the project into multiple files:
-
-* `index.html`
-* `style.css`
-* `script.js`
-
-Benefits:
-
+* Modular structure
 * Easier maintenance
-* Cleaner code organization
-* Simpler debugging
-* Better scalability for future features
+* Easier debugging
+* Simple to modify and extend
+* Suitable for learning and experimentation
+
+### Standalone Mode
+
+* Single HTML file
+* Fully portable
+* Works offline
+* No external dependencies
 
 ---
-
-### Dist Version
-
-The standalone version packages everything into a single HTML file.
-
-Benefits:
-
-* Easy to share
-* No setup required
-* Convenient for quick testing
-* Portable and self-contained
-
----
-
-## Goals
-
-Provide a lightweight, offline, and easy-to-use reference for chemical elements while keeping the project simple, fast, and dependency-free.
-
-The dataset is not yet 100% verified. If you find inaccuracies or have improvements, contributions are always welcome.
-
-
----
-
 
 ## Technology Stack
 
 * HTML5
 * CSS3
-* Vanilla JavaScript (DOM)
+* Vanilla JavaScript
+* JavaScript DOM API
+
+---
+
+## Limitations
+
+* Not intended to replace authoritative scientific references
+* Some scientific data may be inaccurate
+* Synthetic and theoretical element data may be incomplete or speculative
+* No external scientific database or API
+* Browser-dependent behavior
+
+---
+
+## Live Demo
+
+Try it here:
+https://akp-labs.github.io/periodic-table
+
+---
+
+## Contributing
+
+* Open for learning and experimentation
+* Bugs and data inaccuracies may exist
+* Scientific corrections are welcome
+* Improvements and new features are welcome
 
 ---
 
 ## License
 
-This project is open for learning, modification, experimentation, and personal use.
+Open-source for educational, experimental, and personal use.
