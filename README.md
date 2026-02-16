@@ -1,8 +1,8 @@
-# Element Info
+# Periodic Table
 
 A lightweight, browser-based chemical element reference built with pure HTML, CSS, and JavaScript.
 
-Element Info provides quick access to detailed information about chemical elements through a clean, responsive, card-based interface. Browse using the symbol navigation bar or scroll through the collection of element cards.
+Periodic Table provides quick access to detailed information about chemical elements through a clean, responsive, cell +  card-based interface. Browse using the cells of elements.
 
 Designed as a compact, dependency-free reference tool that works entirely offline without external libraries or frameworks.
 
@@ -14,7 +14,8 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
 
 * Information for all **118 officially recognized elements**
 * Includes **experimental elements 119 (Ununennium)** and **120 (Unbinilium)** as theoretical entries
-* Displays essential information:
+* Includes a dynamic periodic table
+* Displays essential information when clicked on a cell:
 
   * Symbol
   * Name
@@ -49,12 +50,12 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
   * Isotopes
   * Molecular Mass
   * Atomicity
-* Fast symbol-based navigation
-* Responsive card layout for desktop and mobile devices
-* Smooth scrolling with element highlighting
+* Fast cell-based navigation
+* Responsive card and cell layout for desktop and mobile devices
+* Smooth scrolling
 * Scroll-to-top button
 * Dynamically generated interface using JavaScript
-* Periodic table reference image
+* Periodic table
 * Fully offline
 * No external libraries or dependencies
 
@@ -65,7 +66,7 @@ Designed as a compact, dependency-free reference tool that works entirely offlin
 ## Project Structure
 
 ```text
-element-info/
+periodic-table/
 ├─ README.md
 ├─ .gitignore
 ├─ LICXENSE

@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Element Info</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Periodic Table</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<h1>Element Info</h1>
 
-<div class="navigation">
-<details>
-    <summary>Navigation button</summary>
-<nav id="nav"></nav>
-</details>
-</div>
+    <h1>Periodic Table</h1>
 
-<div id="elements"></div>
+    <div id="selected-element">
+        <p>Select/click an element from the periodic table to view it's details here.</p>
+    </div>
 
-<img id="periodic-table" src="periodic-table.png" alt="Periodic Table">
+    <hr>
 
-<button type="button" id="scroll-to-top" onclick="scrollToTop()">⬆</button>
+    <div id="periodic-table"></div>
 
-<script src="script.js"></script>
+    <div id="guide">
+        <strong>Each element cell contains:</strong>
+        <br><br>
+            <dl>
+            <dt><b>Symbol</b></dt>
+            <dd>- The bold letters in the center</dd>
+            <dt><b>Name</b></dt>
+            <dd>- Below Symbols</dd>
+            <dt><b>Atomic Number</b></dt>
+            <dd>- Above Symbols</dd>
+            <dt><b>Group Label</b></dt>
+            <dd>- The integer at the top left corner</dd>
+            <dt><b>Period Label</b></dt>
+            <dd>- Below Group Label</dd>
+            </dl>
+    </div>
+
+
+    <button type="button" id="scroll-to-top" onclick="scrollToTop()">⬆</button>
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>

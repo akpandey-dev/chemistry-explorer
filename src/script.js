@@ -4685,97 +4685,186 @@ const elements = [
 
 // Most of the data above is AI generated and can contain inaccuracies
 
-const nav = document.getElementById("nav");
-const container = document.getElementById("elements");
 
-for (const element of elements) {
 
-    nav.innerHTML += `<a href="#${element.id}">${element.symbol}</a>\n`;
+const periodicTable = document.getElementById("periodic-table");
+const selectedElement = document.getElementById("selected-element");
 
-container.innerHTML += `
-<div class="element-card" id="${element.id}">
-    <div class="element-header">
-        <div class="element-symbol">${element.symbol}</div>
-        <div class="element-number">#${element.atomicNumber}</div>
-    </div>
 
-    <div class="element-name">${element.name}</div>
+function renderPeriodicTable(allElements) {
 
-    <div class="element-info">
-        <strong>Group</strong><span>${element.group ?? "-"}</span>
-        <strong>Period</strong><span>${element.period}</span>
-        <strong>Block</strong><span>${element.block}</span>
-        <strong>Valency</strong><span>${element.valency}</span>
-        <strong>Atomic Mass</strong><span>${element.atomicMass}</span>
-        <strong>Neutrons</strong><span>${element.neutrons}</span>
-    </div>
-    <hr>
-    <details>
-        <summary>More Information</summary>
-        <div class="element-info">
-        <strong>Category</strong><span>${element.category}</span>
-        <strong>Phase</strong><span>${element.phase}</span>
-        <strong>Standard State</strong><span>${element.standardState}</span>
-        <strong>Color</strong><span>${element.color}</span>
+    periodicTable.innerHTML = "";
+    allElements.forEach((element) => {
 
-        <strong>Electron Configuration</strong><span>${element.electronConfiguration}</span>
-        <strong>Oxidation States</strong><span>${element.oxidationStates}</span>
-        <strong>Ionization Energy</strong><span>${element.ionizationEnergy}</span>
-        <strong>Electron Affinity</strong><span>${element.electronAffinity}</span>
+        const cell = document.createElement("div");
+        cell.className = "periodic-element";
+        cell.dataset.element = element.id;
+        cell.innerHTML = `
+      <div class="period-label">${element.period}</div>
+      <div class="group-label">${element.group}</div>
+      <div class="number">${element.atomicNumber}</div>
+      <div class="symbol">${element.symbol}</div>
+      <div class="name">${element.name}</div>      
+        `;
 
-        <strong>Atomic Radius</strong><span>${element.atomicRadius}</span>
-        <strong>Ionic Radius</strong><span>${element.ionicRadius}</span>
-        <strong>Covalent Radius</strong><span>${element.covalentRadius}</span>
-        <strong>Density</strong><span>${element.density}</span>
+        cell.addEventListener("click", () => {
+            showElement(element);
+        });
 
-        <strong>Melting Point</strong><span>${element.meltingPoint}</span>
-        <strong>Boiling Point</strong><span>${element.boilingPoint}</span>
+        periodicTable.appendChild(cell);
 
-        <strong>Bonding Type</strong><span>${element.bondingType}</span>
-        <strong>Crystal Structure</strong><span>${element.crystalStructure}</span>
+    });}
 
-        <strong>Natural Occurrence</strong><span>${element.naturalOccurrence}</span>
-        <strong>Radioactive</strong><span>${element.radioactive}</span>
-        <strong>Toxicity</strong><span>${element.toxicity}</span>
 
-        <strong>Uses</strong><span>${element.uses}</span>
-        <strong>Isotopes</strong><span>${element.isotopes}</span>
-        <strong>Atomicity</strong><span>${element.atomicity}</span>
-        <strong>Molecular Mass</strong><span>${element.molecularMass}</span>
+function showElement(element) {
 
-        <strong>Discovery Year</strong><span>${element.discoveryYear}</span>
-        <strong>Discovered By</strong><span>${element.discoveredBy}</span>
-        </div>
-    </details>
-</div>
-`;
-}
-
-nav.addEventListener("click", (e) => {
-    if (!e.target.matches("a")) return;
-    e.preventDefault();
-
-    const id = e.target.getAttribute("href").slice(1);
-    const card = document.getElementById(id);
-
-    card.scrollIntoView({
+    selectedElement.innerHTML = `
+        ${createElementCard(element)}
+    `;
+    selectedElement.scrollIntoView({
         behavior: "smooth",
-        block: "center"
+        block: "start"
+    });
+  }
+
+
+function createElementCard(element) {
+
+    return `
+        <div class="element-card">
+        <div class="element-header">
+        <div class="element-symbol">
+            ${element.symbol}
+        </div>
+        <div class="element-number">
+            #${element.atomicNumber}
+        </div>
+        </div>
+        <div class="element-name">
+            ${element.name}
+        </div>
+
+        <div class="element-info">
+
+          <strong>Group</strong>
+          <span>${element.group ?? "-"}</span>
+
+          <strong>Period</strong>
+          <span>${element.period ?? "-"}</span>
+
+          <strong>Block</strong>
+          <span>${element.block ?? "-"}</span>
+
+          <strong>Valency</strong>
+          <span>${element.valency ?? "-"}</span>
+
+          <strong>Atomic Mass</strong>
+          <span>${element.atomicMass ?? "-"}</span>
+
+          <strong>Neutrons</strong>
+          <span>${element.neutrons ?? "-"}</span>
+
+        </div>
+        
+        <hr>
+
+
+<details>
+
+<summary>More Information</summary>
+
+<div class="element-info">
+
+<strong>Category</strong>
+<span>${element.category ?? "-"}</span>
+
+<strong>Phase</strong>
+<span>${element.phase ?? "-"}</span>
+
+<strong>Standard State</strong>
+<span>${element.standardState ?? "-"}</span>
+
+<strong>Color</strong>
+<span>${element.color ?? "-"}</span>
+
+<strong>Electron Configuration</strong>
+<span>${element.electronConfiguration ?? "-"}</span>
+
+<strong>Oxidation States</strong>
+<span>${element.oxidationStates ?? "-"}</span>
+
+<strong>Ionization Energy</strong>
+<span>${element.ionizationEnergy ?? "-"}</span>
+
+<strong>Electron Affinity</strong>
+<span>${element.electronAffinity ?? "-"}</span>
+
+<strong>Atomic Radius</strong>
+<span>${element.atomicRadius ?? "-"}</span>
+
+<strong>Ionic Radius</strong>
+<span>${element.ionicRadius ?? "-"}</span>
+
+<strong>Covalent Radius</strong>
+<span>${element.covalentRadius ?? "-"}</span>
+
+<strong>Density</strong>
+<span>${element.density ?? "-"}</span>
+
+<strong>Melting Point</strong>
+<span>${element.meltingPoint ?? "-"}</span>
+
+<strong>Boiling Point</strong>
+<span>${element.boilingPoint ?? "-"}</span>
+
+<strong>Bonding Type</strong>
+<span>${element.bondingType ?? "-"}</span>
+
+<strong>Crystal Structure</strong>
+<span>${element.crystalStructure ?? "-"}</span>
+
+<strong>Natural Occurrence</strong>
+<span>${element.naturalOccurrence ?? "-"}</span>
+
+<strong>Radioactive</strong>
+<span>${element.radioactive ?? "-"}</span>
+
+<strong>Toxicity</strong>
+<span>${element.toxicity ?? "-"}</span>
+
+<strong>Uses</strong>
+<span>${element.uses ?? "-"}</span>
+
+<strong>Isotopes</strong>
+<span>${element.isotopes ?? "-"}</span>
+
+<strong>Atomicity</strong>
+<span>${element.atomicity ?? "-"}</span>
+
+<strong>Molecular Mass</strong>
+<span>${element.molecularMass ?? "-"}</span>
+
+<strong>Discovery Year</strong>
+<span>${element.discoveryYear ?? "-"}</span>
+
+<strong>Discovered By</strong>
+<span>${element.discoveredBy ?? "-"}</s</div>
+
+</details>
+</div>
+    `;
+  }
+
+
+function scrollToTop() {
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
     });
 
-    card.classList.remove("highlight-card");
-    void card.offsetWidth;
-    card.classList.add("highlight-card");
-});
-
-
-
-function scrollToTop(){
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'smooth'
-});
-
-
 }
+
+
+renderPeriodicTable(elements);
