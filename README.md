@@ -19,7 +19,7 @@ This project is intended for educational and experimental purposes only. It is n
 2. Open in any browser
 3. Select an element from the periodic table
 
-* Works offline.
+* Works offline once cached.
 * No installation required.
 
 ---
@@ -62,7 +62,7 @@ Recommended for learning, experimentation, and development.
 * Scroll-to-top button
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
-* Fully offline
+
 
 ---
 
@@ -104,7 +104,7 @@ This project uses two modes:
 
 * Single HTML file
 * Fully portable
-* Works offline
+* Works offline once cached
 * No external dependencies
 
 ---
