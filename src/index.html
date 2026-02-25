@@ -13,10 +13,6 @@
 
     <h1>Periodic Table</h1>
 
-    <div id="selected-element">
-        <p>Select/click an element from the periodic table to view it's details here.</p>
-    </div>
-
     <hr>
 
     <div id="periodic-table"></div>
@@ -38,8 +34,10 @@
             </dl>
     </div>
 
-
-    <button type="button" id="scroll-to-top" onclick="scrollToTop()">⬆</button>
+    <div class="element-popup" id="element-popup">
+        <div id="element-popup-content">
+        </div>
+    </div>
 
     <script src="script.js"></script>
 

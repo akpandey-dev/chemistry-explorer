@@ -59,7 +59,6 @@ Recommended for learning, experimentation, and development.
 * Toxicity and common uses
 * Isotope, atomicity, and molecular mass information
 * Smooth element navigation
-* Scroll-to-top button
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
 

@@ -35,31 +35,54 @@ function renderPeriodicTable(allElements) {
       <div class="name">${element.name}</div>      
         `;
 
-        cell.addEventListener("click", () => {
-            showElement(element);
+        periodicTable.appendChild(cell);
+
+        cell.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            openPopup(element);
         });
 
-        periodicTable.appendChild(cell);
+        let pressTimer;
+        cell.addEventListener("touchstart", () => {
+            pressTimer = setTimeout(() => openPopup(element), 900);
+        });
+        cell.addEventListener("touchend", () => clearTimeout(pressTimer));
+        cell.addEventListener("touchmove", () => clearTimeout(pressTimer));
+
 
     });}
 
 
-function showElement(element) {
+const popup = document.getElementById("element-popup");
+const popupContent = document.getElementById("element-popup-content");
 
-    selectedElement.innerHTML = `
-        ${createElementCard(element)}
-    `;
-    selectedElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+
+popup.addEventListener("click", (event) => {
+  if (event.target === popup) popup.style.display = "none";
+  document.body.style.overflow = "auto";
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    popup.style.display = "none";
+    document.body.style.overflow = "auto";
   }
+});
+
+function openPopup(el) {
+  document.body.style.overflow = "hidden";
+  popupContent.innerHTML = `
+  ${createElementCard(el)}
+  `;
+  popup.style.display = "flex";
+  popupContent.style.overflowX = "auto";
+}
 
 
 function createElementCard(element) {
 
     return `
-        <div class="element-card">
+
         <div class="element-header">
         <div class="element-symbol">
             ${element.symbol}
@@ -179,18 +202,10 @@ function createElementCard(element) {
 <span>${element.discoveredBy ?? "-"}</s</div>
 
 </details>
-</div>
+
     `;
   }
 
 
-function scrollToTop() {
 
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-    });
-
-}
 
