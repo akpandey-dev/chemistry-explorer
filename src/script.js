@@ -2,7 +2,7 @@ let elements = [];
 
 async function loadElements() {
     try {
-        const response = await fetch("https://raw.githubusercontent.com/akp-labs/periodic-table/main/src/data/element-data.json");
+        const response = await fetch("http://localhost:8080/element-data.json");
         elements = await response.json();
         renderPeriodicTable(elements);
     } catch (error) {

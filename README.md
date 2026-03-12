@@ -16,8 +16,12 @@ This project is intended for educational and experimental purposes only. It is n
 ### Option 1 — Quick Use (Recommended)
 
 1. Download `dist/periodic-table.html`
-2. Open in any browser
-3. Select an element from the periodic table
+2. Start localhost server from repository root 
+```
+    py tools/server.py
+```
+3. Open in any browser
+4. Select an element from the periodic table
 
 * Works offline once cached.
 * No installation required.
@@ -27,12 +31,14 @@ This project is intended for educational and experimental purposes only. It is n
 ### Option 2 — Development Mode
 
 1. Clone the repository
+2. Start localhost server from repository root 
+```
+    py tools/server.py
+```
 2. Open:
-
 ```text
 src/index.html
 ```
-
 3. Edit files in `src/`
 
 Recommended for learning, experimentation, and development.
@@ -61,6 +67,7 @@ Recommended for learning, experimentation, and development.
 * Smooth element navigation
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
+* Easy data fetching using Python localhost server
 
 
 ---
@@ -114,6 +121,7 @@ This project uses two modes:
 * CSS3
 * Vanilla JavaScript
 * JavaScript DOM API
+* Python (Server stuff only)
 
 ---
 
@@ -123,6 +131,7 @@ This project uses two modes:
 * Some scientific data may be inaccurate
 * Synthetic and theoretical element data may be incomplete or speculative
 * No external scientific database or API
+* Needs localhost server to work
 * Browser-dependent behavior
 
 ---
