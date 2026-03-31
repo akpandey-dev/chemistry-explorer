@@ -74,18 +74,23 @@ Recommended for learning, experimentation, and development.
 
 ## Project Structure
 
-```text
+```
 periodic-table/
 │
-├── index.html              # Entry / landing page
+├── index.html              # Entry / landing page (GitHub Pages)
 │
 ├── src/                    # Development source code
 │   ├── index.html
 │   ├── script.js
-│   └── style.css
+│   ├── style.css
+│   └── data/
+│       └── element-data.json   # Raw dataset (dev only)
 │
-├── dist/                   # Standalone version
-│   └── periodic-table.html # Single-file app
+├── dist/                   # Final build (for users)
+│   └── periodic-table.html  # Single-file app
+│
+├── tools/                  # Development utilities
+│   └── server.py
 │
 ├── README.md
 ├── LICENSE
@@ -139,7 +144,7 @@ This project uses two modes:
 ## Live Demo
 
 Try it here:
-https://akp-labs.github.io/periodic-table
+https:/akpandey-dev.github.io/periodic-table
 
 ---
 
