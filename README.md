@@ -32,7 +32,7 @@ Some element data is AI-generated and may contain inaccuracies. This project is 
 2. Start the local JSON server:
 
 ```
-python tools/json-server.py
+python tools/server.py
 ```
 
 3. Open:
@@ -83,10 +83,10 @@ chemistry-explorer/
 │   └── chemistry-explorer.html  # Single-file app
 │
 ├── scripts/                # Build tools
-│   └── build.js
+│   └── build.py
 │
 ├── tools/                  # Development utilities
-│   └── json-server.py
+│   └── server.py
 │
 ├── README.md
 ├── LICENSE
@@ -100,7 +100,7 @@ chemistry-explorer/
 Run:
 
 ```
-node scripts/build.js
+py scripts/build.py
 ```
 
 This will:
