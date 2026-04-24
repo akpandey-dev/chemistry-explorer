@@ -11,27 +11,42 @@
       --chrome-bg: #2c2b2b;
       --panel-bg: #1f1e1e;
       --border-subtle: #2a2a2a;
-      --text: #ffffff;
-      --text-muted: #cfcfcf;
+      --border-alt:#2980b9;
       --accent: #00ff00;
       --hover: #094771;
+      --box-shadow: rgb(34, 30, 30);
+      --bg-color: rgb(50, 48, 48);
+      --bg-alt-color:#bbb;
+      --text: #ffffff;
+      --text-alt: black;
+      --text-muted: #cfcfcf;
+      --element-labels:rgb(145, 10, 10);
     }
     * {
       box-sizing: border-box;
       padding: 0;
       margin: 0;
     }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar{
+      display: none;
+    } 
+
+    html{
+      scrollbar-width: none;
+    }
+
+
     body {
-      background-color: rgb(50, 48, 48);
-      color: white;
+      background-color:var(--bg-color);
+      color: var(--text);
       height: auto;
       min-height: 100vh;
       width: 100vw;
       margin: auto;
       padding: 5px;
       font-family: Arial, sans-serif;
-      overflow-y: auto;
-      overflow-x: hidden;
+      scrollbar-width: none;
     }
     .allContainer {
       height: 100%;
@@ -55,31 +70,30 @@
       text-align: center;
       transition: transform 0.6s;
       transform-style: preserve-3d;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
     .header:hover .heading {
       transform: rotateY(180deg);
     }
     .heading-front {
-      background-color: #bbb;
-      color: black;
+      background-color: var(--bg-alt-color);
+      color: var(--text-alt);
       text-align: center;
       position: absolute;
       border-top-left-radius: 20px;
       border-bottom-right-radius: 20px;
-      border: 2px solid #2980b9;
+      border: 2px solid var(--border-alt);
       margin: auto;
       padding: 2px;
     }
     .heading-back {
-      background-color: #2980b9;
-      color: white;
+      background-color: var(--panel-bg);
+      color: var(--text);
       transform: rotateY(180deg);
       text-align: center;
       position: absolute;
       border-top-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      border: 2px solid #2980b9;
+      border: 2px solid var(--border-alt);
       margin: auto;
       padding: 2px;
     }
@@ -123,7 +137,7 @@
 .element .group-label {
   position: absolute;
   font-size: 0.5rem;
-  color: rgb(145, 10, 10);
+  color: var(--element-labels);
   opacity: 0.9;
 }
 
@@ -150,7 +164,7 @@
 .number {
   font-size: 0.8rem;
   opacity: 0.8;
-  color: black;
+  color: var(--text-alt);
 }
 
 /* 📱 Responsive tweaks */
@@ -211,7 +225,7 @@
   border-radius: 10px;
   padding: 15px 20px;
   text-align: center;
-  box-shadow: 0 0 10px #00000055;
+  box-shadow: 0 0 10px var(--box-shadow);
 }
 
 .legend h3 {
@@ -228,7 +242,7 @@
   justify-content: center;
   gap: 10px 20px;
   padding: 5px;
-  border: 1px solid rgb(79, 74, 74);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
 }
 .legend-items2 {
@@ -237,7 +251,7 @@
   justify-content: center;
   gap: 10px 20px;
   padding: 5px;
-  border: 1px solid rgb(79, 74, 74);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
 }
 
@@ -254,7 +268,7 @@
   height: 20px;
   margin-right: 8px;
   border-radius: 4px;
-  border: 1px solid #555;
+  border: 1px solid var(--border-subtle);
 }
 
 /* Responsive tweaks */
@@ -267,6 +281,37 @@
     height: 16px;
   }
 }
+
+.global-info-btn {
+  position: fixed; 
+  top: 5px;
+  right: 5px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-alt);
+  color: var(--text);
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000; /* stays above everything */
+  box-shadow: 0 0 8px var(--box-shadow);
+  transition: 0.2s;
+    opacity: 0.7;
+}
+
+.global-info-btn:hover {
+  transform: scale(1.15);
+  background: var(--accent);
+  opacity: 1;
+}
+
+.global-info-btn.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
 .searchElement, .periodicTable{
   width: 90%;
   max-width: 900px;
@@ -275,12 +320,35 @@
   border-radius: 10px;
   padding: 15px 20px;
   text-align: center;
-  box-shadow: 0 0 10px #00000055;
+  box-shadow: 0 0 10px var(--box-shadow);
 }
 
 .headingTopic{
-  color: #b3b3ff;
+  color: var(--text-muted);
 }
+
+.element-popup{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+#element-popup-content{
+    background:#1e1e1e;
+    padding:20px;
+    width:320px;
+    border-radius:12px;
+    color:white;
+    box-shadow:0 0 12px black;
+      animation: popIn 0.2s ease;
+}
+
 .search-element{
   width:90%;
   height: auto;
@@ -303,9 +371,9 @@
 #searchbox{
   width: 45vw;
   background-color: var(--border-subtle);
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--box-shadow);
   margin: auto;
-  color: white;
+  color: var(--text);
   height: 3.5vh;
 
 }
@@ -313,37 +381,44 @@
   background-color: var(--border-subtle);
   width: 40vw;
   height: 3.5vh;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 #searchstyleselect{
   background-color: var(--border-subtle);
   width: 40vw;
   height: 3.5vh;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 #searchbtn{
 
   background-color: var(--border-subtle);
   width: 10vw;
   height: 3.8vh;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 .search-result{
   background-color: var(--border-subtle);
   width: 100%;
   height: auto;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 #clearbtn{
   background-color: var(--border-subtle);
   width: 30vw;
   height: 3.8vh;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
+#clearbtn.clear{
+  color: red;
+}
 
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 
 
 
@@ -354,8 +429,8 @@
   <div class="allContainer">
     <div class="header">
       <div class="heading">
-        <h4 class="heading-front">Chemistry Documentation</h4>
-        <h6 class="heading-back">Explore the fascinating world of chemistry!</h6>
+        <h4 class="heading-front">Chemistry Explorer</h4>
+        <h6 class="heading-back">Explore the fascinating world of chemistry!<br>Discover elements. Interact. Learn.</h6>
       </div>
     </div>
 
@@ -425,28 +500,13 @@
 
 </div>
 
-<div id="element-popup" style="
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:#00000088;
-  backdrop-filter: blur(3px);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-">
-  <div id="popup-content" style="
-    background:#1e1e1e;
-    padding:20px;
-    width:320px;
-    border-radius:12px;
-    color:white;
-    box-shadow:0 0 12px black;
-  "></div>
+
+<div class="element-popup" id="element-popup">
+    <div id="element-popup-content"></div>
+  </div>
 </div>
 
-
+<button class="global-info-btn" title="Quick Guide">i</button> <!--help btn-->
 
 
 <script>
@@ -5027,6 +5087,33 @@ let allElements = [
 ];
 renderPeriodicTable(allElements); // cache all elements
 
+let helpText = `
+<!DOCTYPE html>
+<head>
+<title>Chemistry Explorer | Quick Guide</title>
+</head>
+<body>
+<h2>🧪 Chemistry Explorer – Quick Guide</h2>
+
+<p><strong>🔍 Search:</strong> Use the search bar to find elements by Name, Symbol, or Atomic Number.</p>
+<p><strong>📊 Periodic Table:</strong> Hover over elements to explore visually. Right-click (or long press on mobile) to open detailed element info.</p>
+<p><strong>🧾 Element Popup:</strong> Right click or hold a cell to show atomic number, mass, valency, category, block, group, and period.</p>
+<p><strong>🎨 Color System:</strong> Each color represents an element category (nonmetals, metals, noble gases, etc.).</p>
+<p><strong>🧱 Block Borders:</strong> Border colors indicate S, P, D, and F blocks.</p>
+<p><strong>📖 Search Modes:</strong><br>
+- Brief → Quick summary view<br>
+- Detail → Full scientific dataset</p>
+<p><strong>📖 Search Options:</strong><br>
+- Atomic Number → Search elements using atomic number<br>
+- Name → Search elements using their names<br>
+- Symbol → Search elements using their chemical symbols</p>
+<p><strong>🧼 Clear Button:</strong> Resets search and restores full periodic table view.</p>
+<p><strong>⚠️ Note:</strong> Some values are AI-generated and may contain inaccuracies. Verify before use.</p>
+<hr>
+<p style="opacity:0.7;">Built for learning, experimenting, and exploring chemistry visually.</p>
+</body>`;
+
+  
 async function loadElements() {
   try {
     
@@ -5036,6 +5123,7 @@ async function loadElements() {
     console.error("❌ Error loading JSON:", error);
   }
 }
+
 
 function renderPeriodicTable(elements) {
   const table = document.getElementById("periodic-table");
@@ -5070,6 +5158,7 @@ function renderPeriodicTable(elements) {
     table.appendChild(cell);
 
 
+
 // RIGHT-CLICK = open popup
 cell.addEventListener("contextmenu", (e) => {
   e.preventDefault();
@@ -5079,27 +5168,35 @@ cell.addEventListener("contextmenu", (e) => {
 // LONG PRESS = open popup
 let pressTimer;
 cell.addEventListener("touchstart", () => {
-  pressTimer = setTimeout(() => openPopup(el), 500);
+  pressTimer = setTimeout(() => openPopup(el), 900);
 });
 cell.addEventListener("touchend", () => clearTimeout(pressTimer));
-  });
-}
+cell.addEventListener("touchmove", () => clearTimeout(pressTimer));
+
+});
 
 
 
+// element Popup System
 
-// =========================
-// Popup System
-// =========================
 const popup = document.getElementById("element-popup");
-const popupContent = document.getElementById("popup-content");
+const popupContent = document.getElementById("element-popup-content");
 
-// Close popup when clicking outside it
+// Close popup on clicking outside
 popup.addEventListener("click", (event) => {
   if (event.target === popup) popup.style.display = "none";
+  document.body.style.overflow = "auto";
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    popup.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
 });
 
 function openPopup(el) {
+  document.body.style.overflow = "hidden";
   popupContent.innerHTML = `
     <h2 style="color:${colorMap[el.category.toLowerCase()] || 'white'};">
       ${el.symbol} – ${el.name}
@@ -5116,10 +5213,29 @@ function openPopup(el) {
   popup.style.display = "flex";
 }
 
+}
+
+      //helpbtn
+const infoBtn = document.querySelector('.global-info-btn');
+
+infoBtn.addEventListener('click', () =>{
+  const win = window.open("", "_blank");
+
+win.document.open();
+win.document.write(helpText);
+win.document.close();
+})
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    infoBtn.classList.add('hide');
+  } else {
+    infoBtn.classList.remove('hide');
+  }
+});
 
 
-
-// 🔍 SEARCH FEATURE
+// Search feature
 function searchElement() {
   const query = document.getElementById("searchbox").value.trim().toLowerCase();
   const method = document.getElementById("searchselect").value;
@@ -5211,7 +5327,7 @@ function searchElement() {
     )
     .join("");
     }
-document.getElementById("clearbtn").style.color = "red";
+document.getElementById("clearbtn").classList.add("clear");
 
 }
 document.getElementById("searchbtn").addEventListener("click", searchElement);
@@ -5225,7 +5341,7 @@ document.getElementById("clearbtn").addEventListener("click", ()=>{
     document.getElementById("searchbox").value = '';
     document.getElementById("searchselect").selectedIndex = 0 ;
     document.getElementById("searchstyleselect").selectedIndex = 0;
-    document.getElementById("clearbtn").style.color = "black";
+    document.getElementById("clearbtn").classList.remove("clear");
     
 
 });

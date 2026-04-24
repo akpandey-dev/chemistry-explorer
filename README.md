@@ -13,9 +13,9 @@ Some element data is AI-generated and may contain inaccuracies. This project is 
 
 ---
 
-## 🚀 Usage
+## Usage
 
-### 🟢 Option 1 — Quick Use (Recommended)
+### Option 1 — Quick Use (Recommended)
 
 1. Download `dist/chemistry-explorer.html`
 2. Open it in any browser (mobile or PC)
@@ -26,7 +26,7 @@ Some element data is AI-generated and may contain inaccuracies. This project is 
 
 ---
 
-### 🧪 Option 2 — Development Mode
+### Option 2 — Development Mode
 
 1. Clone the repository
 2. Start the local JSON server:
@@ -49,7 +49,7 @@ This mode is recommended for:
 
 ---
 
-## ✨ Features
+## Features
 
 * Dynamic periodic table interface
 * Search elements by:
@@ -65,7 +65,7 @@ This mode is recommended for:
 
 ---
 
-## 🏗 Project Structure
+## Project Structure
 
 ```
 chemistry-explorer/
@@ -95,7 +95,7 @@ chemistry-explorer/
 
 ---
 
-## ⚙️ Build System
+## Build System
 
 Run:
 
@@ -111,17 +111,17 @@ This will:
 
 ---
 
-## 🧠 Architecture Overview
+## Architecture Overview
 
 This project uses two modes:
 
-### 🟢 Development Mode
+### Development Mode
 
 * Modular structure (`src/`)
 * JSON loaded via local server
 * Easy to edit and extend
 
-### 🔵 Production Mode
+### Production Mode
 
 * Single HTML file (`dist/`)
 * JSON embedded directly
@@ -129,7 +129,7 @@ This project uses two modes:
 
 ---
 
-## 🧪 Data
+## Data
 
 * Stored in `src/data/elements.json`
 * Contains detailed properties for each element
@@ -137,7 +137,7 @@ This project uses two modes:
 
 ---
 
-## 🧰 Technology Stack
+## Technology Stack
 
 * HTML5
 * CSS3
@@ -148,7 +148,7 @@ No external libraries or frameworks are used.
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
 * Some chemical data may be inaccurate
 * Not connected to live scientific databases
@@ -157,14 +157,14 @@ No external libraries or frameworks are used.
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
 Try it here:
 https://akpandey-dev.github.io/chemistry-explorer
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This project is open for:
 
@@ -176,6 +176,6 @@ There may be bugs or incomplete features — feel free to explore and improve.
 
 ---
 
-## 📜 License
+## License
 
 Open-source for educational and experimental use.

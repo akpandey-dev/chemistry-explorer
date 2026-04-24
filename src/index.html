@@ -12,8 +12,8 @@
   <div class="allContainer">
     <div class="header">
       <div class="heading">
-        <h4 class="heading-front">Chemistry Documentation</h4>
-        <h6 class="heading-back">Explore the fascinating world of chemistry!</h6>
+        <h4 class="heading-front">Chemistry Explorer</h4>
+        <h6 class="heading-back">Explore the fascinating world of chemistry!<br>Discover elements. Interact. Learn.</h6>
       </div>
     </div>
 
@@ -83,28 +83,13 @@
 
 </div>
 
-<div id="element-popup" style="
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:#00000088;
-  backdrop-filter: blur(3px);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-">
-  <div id="popup-content" style="
-    background:#1e1e1e;
-    padding:20px;
-    width:320px;
-    border-radius:12px;
-    color:white;
-    box-shadow:0 0 12px black;
-  "></div>
+
+<div class="element-popup" id="element-popup">
+    <div id="element-popup-content"></div>
+  </div>
 </div>
 
-
+<button class="global-info-btn" title="Quick Guide">i</button> <!--help btn-->
 
 
 <script src="script.js"></script>

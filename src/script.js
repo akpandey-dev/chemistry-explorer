@@ -13,6 +13,33 @@ const colorMap = {
 
 let allElements = []; // cache all elements
 
+let helpText = `
+<!DOCTYPE html>
+<head>
+<title>Chemistry Explorer | Quick Guide</title>
+</head>
+<body>
+<h2>🧪 Chemistry Explorer – Quick Guide</h2>
+
+<p><strong>🔍 Search:</strong> Use the search bar to find elements by Name, Symbol, or Atomic Number.</p>
+<p><strong>📊 Periodic Table:</strong> Hover over elements to explore visually. Right-click (or long press on mobile) to open detailed element info.</p>
+<p><strong>🧾 Element Popup:</strong> Right click or hold a cell to show atomic number, mass, valency, category, block, group, and period.</p>
+<p><strong>🎨 Color System:</strong> Each color represents an element category (nonmetals, metals, noble gases, etc.).</p>
+<p><strong>🧱 Block Borders:</strong> Border colors indicate S, P, D, and F blocks.</p>
+<p><strong>📖 Search Modes:</strong><br>
+- Brief → Quick summary view<br>
+- Detail → Full scientific dataset</p>
+<p><strong>📖 Search Options:</strong><br>
+- Atomic Number → Search elements using atomic number<br>
+- Name → Search elements using their names<br>
+- Symbol → Search elements using their chemical symbols</p>
+<p><strong>🧼 Clear Button:</strong> Resets search and restores full periodic table view.</p>
+<p><strong>⚠️ Note:</strong> Some values are AI-generated and may contain inaccuracies. Verify before use.</p>
+<hr>
+<p style="opacity:0.7;">Built for learning, experimenting, and exploring chemistry visually.</p>
+</body>`;
+
+  
 async function loadElements() {
   try {
     const response = await fetch("http://localhost:8080/elements.json");
@@ -22,6 +49,7 @@ async function loadElements() {
     console.error("❌ Error loading JSON:", error);
   }
 }
+
 
 function renderPeriodicTable(elements) {
   const table = document.getElementById("periodic-table");
@@ -56,6 +84,7 @@ function renderPeriodicTable(elements) {
     table.appendChild(cell);
 
 
+
 // RIGHT-CLICK = open popup
 cell.addEventListener("contextmenu", (e) => {
   e.preventDefault();
@@ -65,27 +94,35 @@ cell.addEventListener("contextmenu", (e) => {
 // LONG PRESS = open popup
 let pressTimer;
 cell.addEventListener("touchstart", () => {
-  pressTimer = setTimeout(() => openPopup(el), 500);
+  pressTimer = setTimeout(() => openPopup(el), 900);
 });
 cell.addEventListener("touchend", () => clearTimeout(pressTimer));
-  });
-}
+cell.addEventListener("touchmove", () => clearTimeout(pressTimer));
+
+});
 
 
 
+// element Popup System
 
-// =========================
-// Popup System
-// =========================
 const popup = document.getElementById("element-popup");
-const popupContent = document.getElementById("popup-content");
+const popupContent = document.getElementById("element-popup-content");
 
-// Close popup when clicking outside it
+// Close popup on clicking outside
 popup.addEventListener("click", (event) => {
   if (event.target === popup) popup.style.display = "none";
+  document.body.style.overflow = "auto";
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    popup.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
 });
 
 function openPopup(el) {
+  document.body.style.overflow = "hidden";
   popupContent.innerHTML = `
     <h2 style="color:${colorMap[el.category.toLowerCase()] || 'white'};">
       ${el.symbol} – ${el.name}
@@ -102,10 +139,29 @@ function openPopup(el) {
   popup.style.display = "flex";
 }
 
+}
+
+      //helpbtn
+const infoBtn = document.querySelector('.global-info-btn');
+
+infoBtn.addEventListener('click', () =>{
+  const win = window.open("", "_blank");
+
+win.document.open();
+win.document.write(helpText);
+win.document.close();
+})
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    infoBtn.classList.add('hide');
+  } else {
+    infoBtn.classList.remove('hide');
+  }
+});
 
 
-
-// 🔍 SEARCH FEATURE
+// Search feature
 function searchElement() {
   const query = document.getElementById("searchbox").value.trim().toLowerCase();
   const method = document.getElementById("searchselect").value;
@@ -197,7 +253,7 @@ function searchElement() {
     )
     .join("");
     }
-document.getElementById("clearbtn").style.color = "red";
+document.getElementById("clearbtn").classList.add("clear");
 
 }
 document.getElementById("searchbtn").addEventListener("click", searchElement);
@@ -211,7 +267,7 @@ document.getElementById("clearbtn").addEventListener("click", ()=>{
     document.getElementById("searchbox").value = '';
     document.getElementById("searchselect").selectedIndex = 0 ;
     document.getElementById("searchstyleselect").selectedIndex = 0;
-    document.getElementById("clearbtn").style.color = "black";
+    document.getElementById("clearbtn").classList.remove("clear");
     
 
 });
