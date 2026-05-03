@@ -84,7 +84,7 @@ periodic-table/
 │   ├── script.js
 │   ├── style.css
 │   └── data/
-│       └── element-data.json   # Raw dataset (dev only)
+│       └── elements.json   # Raw dataset (dev only)
 │
 ├── dist/                   # Final build (for users)
 │   └── periodic-table.html  # Single-file app

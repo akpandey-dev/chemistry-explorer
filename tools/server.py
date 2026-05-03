@@ -26,5 +26,5 @@ if __name__ == "__main__":
 
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print(f"Server running at http://localhost:{PORT}/")
-        print(f"Access JSON at http://localhost:{PORT}/element-data.json")
+        print(f"Access JSON at http://localhost:{PORT}/elements.json")
         httpd.serve_forever()
