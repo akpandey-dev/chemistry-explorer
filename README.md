@@ -40,6 +40,10 @@ This project is intended for educational and experimental purposes only. It is n
 src/index.html
 ```
 3. Edit files in `src/`
+4. Build using
+```text
+py scripts/build.py
+```
 
 Recommended for learning, experimentation, and development.
 
@@ -89,6 +93,9 @@ periodic-table/
 ├── dist/                   # Final build (for users)
 │   └── periodic-table.html  # Single-file app
 │
+├── scripts/                # Build tools
+│   └── build.py
+│
 ├── tools/                  # Development utilities
 │   └── server.py
 │
@@ -126,7 +133,7 @@ This project uses two modes:
 * CSS3
 * Vanilla JavaScript
 * JavaScript DOM API
-* Python (Server stuff only)
+* Python (Server stuff and build script)
 
 ---
 

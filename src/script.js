@@ -1,4 +1,4 @@
-let allElements = []; // cache all elements
+let allElements = []; 
 
 
 async function loadElements() {
