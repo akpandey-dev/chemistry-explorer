@@ -1,8 +1,8 @@
-# Periodic Table
+# Chemistry Explorer
 
 An interactive, browser-based chemical element reference that allows users to explore the periodic table and view detailed information about chemical elements.
 
-Periodic Table provides a lightweight reference environment inside the browser, enabling quick exploration of element properties through a responsive periodic table and dynamically generated information cards.
+Chemistry Explorer provides a lightweight reference environment inside the browser, enabling quick exploration of element properties through a responsive periodic table and dynamically generated information cards.
 
 ---
 
@@ -15,7 +15,7 @@ This project is intended for educational and experimental purposes only. It is n
 
 ### Option 1 — Quick Use (Recommended)
 
-1. Download `dist/periodic-table.html`
+1. Download `dist/chemistry-explorer.html`
 2. Start localhost server from repository root 
 ```
     py tools/server.py
@@ -79,7 +79,7 @@ Recommended for learning, experimentation, and development.
 ## Project Structure
 
 ```
-periodic-table/
+chemistry-explorer/
 │
 ├── index.html              # Entry / landing page (GitHub Pages)
 │
@@ -91,7 +91,7 @@ periodic-table/
 │       └── elements.json   # Raw dataset (dev only)
 │
 ├── dist/                   # Final build (for users)
-│   └── periodic-table.html  # Single-file app
+│   └── chemistry-explorer.html  # Single-file app
 │
 ├── scripts/                # Build tools
 │   └── build.py
@@ -151,7 +151,7 @@ This project uses two modes:
 ## Live Demo
 
 Try it here:
-https:/akpandey-dev.github.io/periodic-table
+https:/akpandey-dev.github.io/chemistry-explorer
 
 ---
 

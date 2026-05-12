@@ -9,7 +9,7 @@ CSS_FILE = os.path.join(SRC_DIR, "style.css")
 JS_FILE = os.path.join(SRC_DIR, "script.js")
 JSON_FILE = os.path.join(SRC_DIR, "data", "elements.json")
 
-OUTPUT_FILE = os.path.join(DIST_DIR, "periodic-table.html")
+OUTPUT_FILE = os.path.join(DIST_DIR, "chemistry-explorer.html")
 
 
 def read_file(path):
@@ -23,7 +23,7 @@ def write_file(path, content):
 
 
 def build():
-    print("Building Periodic Table...")
+    print("Building Chemistry Explorer...")
 
     html = read_file(HTML_FILE)
     css = read_file(CSS_FILE)
