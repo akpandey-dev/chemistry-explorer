@@ -6,8 +6,12 @@ Chemistry Explorer provides a lightweight reference environment inside the brows
 
 ---
 
-⚠️ Disclaimer
-This project is intended for educational and experimental purposes only. It is not a substitute for authoritative scientific references. Some dataset entries, particularly synthetic and theoretical elements, may contain inaccuracies.
+The dataset includes up to **120 elements**, each described using **36 detailed properties**, including both standard and extended entries.
+
+---
+
+⚠️ **Disclaimer**
+Some element data is AI-generated and may contain inaccuracies. This project is intended for educational and experimental purposes only. Do not treat the data as authoritative for scientific, professional, or academic work.
 
 ---
 
@@ -20,8 +24,8 @@ This project is intended for educational and experimental purposes only. It is n
 ```
     py tools/server.py
 ```
-3. Open in any browser
-4. Select an element from the periodic table
+3. Open in any browser (mobile or PC)
+4. Use instantly — no setup required
 
 * Works offline once cached.
 * No installation required.
@@ -31,16 +35,19 @@ This project is intended for educational and experimental purposes only. It is n
 ### Option 2 — Development Mode
 
 1. Clone the repository
-2. Start localhost server from repository root 
+2. Start the local JSON server:
+
 ```
-    py tools/server.py
+python tools/server.py
 ```
-2. Open:
-```text
+
+3. Open:
+
+```
 src/index.html
 ```
-3. Edit files in `src/`
-4. Build using
+4. Edit files in `src/`
+5. Build using
 ```text
 py scripts/build.py
 ```
@@ -106,24 +113,45 @@ chemistry-explorer/
 
 ---
 
-## Project Overview
+## Build System
+
+Run:
+
+```
+py scripts/build.py
+```
+
+This will:
+
+* combine HTML, CSS, and JS
+* embed `elements.json`
+* generate a fully self-contained file in `dist/`
+
+---
+
+## Architecture Overview
 
 This project uses two modes:
 
 ### Development Mode
 
-* Modular structure
-* Easier maintenance
-* Easier debugging
-* Simple to modify and extend
-* Suitable for learning and experimentation
+* Modular structure (`src/`)
+* JSON loaded via local server
+* Easy to edit and extend
 
-### Standalone Mode
+### Production Mode
 
-* Single HTML file
-* Fully portable
-* Works offline once cached
-* No external dependencies
+* Single HTML file (`dist/`)
+* JSON embedded directly
+* Works offline and anywhere
+
+---
+
+## Data
+
+* Stored in `src/data/elements.json`
+* Contains detailed properties for each element
+* Used during development and embedded during build
 
 ---
 
@@ -132,8 +160,9 @@ This project uses two modes:
 * HTML5
 * CSS3
 * Vanilla JavaScript
-* JavaScript DOM API
-* Python (Server stuff and build script)
+* Python (for local server)
+
+No external libraries or frameworks are used.
 
 ---
 
@@ -143,7 +172,6 @@ This project uses two modes:
 * Some scientific data may be inaccurate
 * Synthetic and theoretical element data may be incomplete or speculative
 * No external scientific database or API
-* Needs localhost server to work
 * Browser-dependent behavior
 
 ---
@@ -157,10 +185,13 @@ https:/akpandey-dev.github.io/chemistry-explorer
 
 ## Contributing
 
-* Open for learning and experimentation
-* Bugs and data inaccuracies may exist
-* Scientific corrections are welcome
-* Improvements and new features are welcome
+This project is open for:
+
+* learning
+* modification
+* experimentation
+
+There may be bugs or incomplete features - feel free to explore and improve.
 
 ---
 
