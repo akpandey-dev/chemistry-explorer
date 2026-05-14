@@ -257,3 +257,76 @@ hr {
     overflow-y:auto;
     scrollbar-width:thin;
 }
+
+.headingTopic{
+  color:  rgba(0,0,0,.15);
+}
+
+
+.search-element-header, .periodic-table-header{
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto 10px;
+  border: 1px solid  rgba(0,0,0,.15);
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 0 10px  rgba(0,0,0,.15);
+}
+
+.search-element{
+  width:90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+}
+.searchbar{
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+  width: 100%;
+  gap: 8px;
+  padding: 3px;
+  align-items: center;
+  justify-content: center;
+}
+
+#searchbox{
+  width: 45vw;
+  background-color: black;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  margin: auto;
+  color: #d7fff1;
+  height: 3.5vh;
+
+}
+
+#searchbtn{
+
+  background-color: black;
+  width: 10vw;
+  height: 3.8vh;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+}
+
+.search-result{
+  background-color: black;
+  width: 100%;
+  height: auto;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  color: #d7fff1;
+}
+
+#clearbtn{
+  background-color: black;
+  width: 30vw;
+  height: 3.8vh;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  color: #d7fff1;
+}
+
+#clearbtn.clear{
+  color: red;
+}

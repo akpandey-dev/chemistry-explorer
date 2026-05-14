@@ -266,12 +266,89 @@ hr {
     overflow-y:auto;
     scrollbar-width:thin;
 }
+
+.headingTopic{
+  color:  rgba(0,0,0,.15);
+}
+
+
+.search-element-header, .periodic-table-header{
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto 10px;
+  border: 1px solid  rgba(0,0,0,.15);
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 0 10px  rgba(0,0,0,.15);
+}
+
+.search-element{
+  width:90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+}
+.searchbar{
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+  width: 100%;
+  gap: 8px;
+  padding: 3px;
+  align-items: center;
+  justify-content: center;
+}
+
+#searchbox{
+  width: 45vw;
+  background-color: black;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  margin: auto;
+  color: #d7fff1;
+  height: 3.5vh;
+
+}
+
+#searchbtn{
+
+  background-color: black;
+  width: 10vw;
+  height: 3.8vh;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+}
+
+.search-result{
+  background-color: black;
+  width: 100%;
+  height: auto;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  color: #d7fff1;
+}
+
+#clearbtn{
+  background-color: black;
+  width: 30vw;
+  height: 3.8vh;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  color: #d7fff1;
+}
+
+#clearbtn.clear{
+  color: red;
+}
 </style>
 </head>
 
 <body>
 
     <h1>Chemistry Explorer</h1>
+
+<div class="periodic-table-header">
+    <h3 class="heading-topic">Periodic Table</h3>
+</div>
 
     <hr>
 
@@ -293,6 +370,22 @@ hr {
             <dd>- Below Group Label</dd>
             </dl>
     </div>
+
+<div class="search-element-header">
+  <h3 class="heading-topic">Search an Element</h3>
+</div>
+
+<div class="search-element" id="search-element">
+
+  <div class="searchbar">
+    <input type="search" id="searchbox" placeholder="Eg. Uranium">
+    <button type="button" id="searchbtn">🔍</button>
+        <button type="button" id="clearbtn">Clear</button>
+  </div>
+
+  <div class="search-result" id="search-result">
+  </div>
+</div>
 
     <div class="element-popup" id="element-popup">
         <div id="element-popup-content">
@@ -5183,6 +5276,81 @@ function createElementCard(element) {
 
     `;
   }
+
+
+
+
+
+function searchElement() {
+  const query = document.getElementById("searchbox").value.trim().toLowerCase();
+
+  if (!query) return;
+
+  const results = allElements.filter((el) => el.name.toLowerCase().includes(query));
+  const resultDiv = document.getElementById("search-result");
+
+  if (results.length === 0) {
+    resultDiv.innerHTML = `<p style="padding:8px;color:red;">No element found!</p>`;
+    return;
+  }
+
+  resultDiv.innerHTML = results
+    .map(
+      (el) => `
+      <div style="padding:8px;border-bottom:1px solid #333;">
+        <strong>${el.name}</strong> (${el.symbol})<br>
+        Neutrons: ${el.neutrons}<br>
+        Atomic No: ${el.atomicNumber}<br>
+        Atomic Mass: ${el.atomicMass}<br>
+        Atomic Radius: ${el.atomicRadius}<br>
+        Ionic Radius: ${el.ionicRadius}<br>
+        Valency: ${el.valency}<br>
+        Atomicity: ${el.atomicity}<br>
+        Molecular Mass: ${el.molecularMass}<br>
+        Category: ${el.category}<br>
+        Phase: ${el.phase}<br>
+        Standard State: ${el.standardState}<br>
+        Color: ${el.color}<br>
+        Block: ${el.block.toUpperCase()}<br>
+        Period: ${el.period}<br>
+        Group: ${el.group}<br>
+        Density: ${el.density}<br>
+        Melting Point: ${el.meltingPoint}<br>
+        Boiling Point: ${el.boilingPoint}<br>
+        Electron Configuration: ${el.electronConfiguration}<br>
+        Electro-Negativity: ${el.electronegativity}<br>
+        Covalent Radius: ${el.covalentRadius}<br>
+        Ionization Energy: ${el.ionizationEnergy}<br>
+        Electron Affinity: ${el.electronAffinity}<br>
+        Oxidation States: ${el.oxidationStates}<br>
+        Bonding Type: ${el.bondingType}<br>
+        Crystal Structure: ${el.crystalStructure}<br>
+        Isotopes: ${el.isotopes}<br>
+        Radioactive: ${el.radioactive}<br>
+        Toxicity: ${el.toxicity}<br>
+        Occurrence: ${el.naturalOccurrence}<br>
+        Origin: ${el.naturalOrManMade}<br>
+        Discovered-by: ${el.discoveredBy}<br>
+        Discovered-in: ${el.discoveryYear}<br>
+        Uses: ${el.uses}<br>
+      </div>`
+    )
+    .join("");
+
+  document.getElementById("clearbtn").classList.add("clear");
+}
+
+document.getElementById("searchbtn").addEventListener("click", searchElement);
+
+document.getElementById("searchbox").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") searchElement();
+});
+
+document.getElementById("clearbtn").addEventListener("click", () => {
+  document.getElementById("search-result").innerHTML = "";
+  document.getElementById("searchbox").value = "";
+  document.getElementById("clearbtn").classList.remove("clear");
+});
 
 
 

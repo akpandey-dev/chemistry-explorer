@@ -63,19 +63,20 @@ Recommended for learning, experimentation, and development.
 * Interactive periodic table
 * Responsive element cells for desktop and mobile devices
 * Element details displayed when a cell is selected
-* Atomic number, symbol, name, group, period, and block information
-* Valency, atomic mass, and neutron count
 * Expandable additional information section
-* Electron configuration and oxidation states
-* Atomic, ionic, and covalent radii
-* Ionization energy and electron affinity
-* Density, melting point, and boiling point
-* Bonding type and crystal structure
-* Discovery information
-* Natural occurrence and radioactivity information
-* Toxicity and common uses
-* Isotope, atomicity, and molecular mass information
+    * Atomic number, symbol, name, group, period, and block information
+    * Valency, atomic mass, and neutron count
+    * Electron configuration and oxidation states
+    * Atomic, ionic, and covalent radii
+    * Ionization energy and electron affinity
+    * Density, melting point, and boiling point
+    * Bonding type and crystal structure
+    * Discovery information
+    * Natural occurrence and radioactivity information
+    * Toxicity and common uses
+    * Isotope, atomicity, and molecular mass information
 * Smooth element navigation
+* Powerful element search feature
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
 * Easy data fetching using Python localhost server
