@@ -247,16 +247,15 @@ hr {
 }
 
 #element-popup-content{
-    background:white;
-    border-radius:8px;
-    padding:10px;
-    border:1px solid rgba(0,0,0,.15);
-    box-shadow:0 6px 20px rgba(0,0,0,.08);
-    width:min(600px,90vw);
-    max-height:90vh;
-    overflow-y:auto;
-    scrollbar-width:thin;
+    background:#1e1e1e;
+    padding:20px;
+    width:320px;
+    border-radius:12px;
+    color:white;
+    box-shadow:0 0 12px black;
+    animation: popIn 0.2s ease;
 }
+
 
 .headingTopic{
   color:  rgba(0,0,0,.15);

@@ -20,14 +20,10 @@ Some element data is AI-generated and may contain inaccuracies. This project is 
 ### Option 1 — Quick Use (Recommended)
 
 1. Download `dist/chemistry-explorer.html`
-2. Start localhost server from repository root 
-```
-    py tools/server.py
-```
-3. Open in any browser (mobile or PC)
-4. Use instantly — no setup required
+2. Open in any browser (mobile or PC)
+3. Use instantly — no setup required
 
-* Works offline once cached.
+* Works offline.
 * No installation required.
 
 ---
@@ -62,19 +58,17 @@ Recommended for learning, experimentation, and development.
 * Experimental/theoretical entries for elements 119 and 120
 * Interactive periodic table
 * Responsive element cells for desktop and mobile devices
-* Element details displayed when a cell is selected
-* Expandable additional information section
-    * Atomic number, symbol, name, group, period, and block information
-    * Valency, atomic mass, and neutron count
-    * Electron configuration and oxidation states
-    * Atomic, ionic, and covalent radii
-    * Ionization energy and electron affinity
-    * Density, melting point, and boiling point
-    * Bonding type and crystal structure
-    * Discovery information
-    * Natural occurrence and radioactivity information
-    * Toxicity and common uses
-    * Isotope, atomicity, and molecular mass information
+
+* Element details displayed when a cell is selected held/right-clicked/double-clicked
+    * Symbol
+    * Name
+    * Atomic Number
+    * Atomic Mass
+    * Valency
+    * Category
+    * Block
+    * Period
+    * Group
 * Smooth element navigation
 * Powerful element search feature
 * Dynamically generated interface using JavaScript
