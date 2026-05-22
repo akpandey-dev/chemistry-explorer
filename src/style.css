@@ -16,6 +16,15 @@ body {
     color: #222;
 }
 
+    .allContainer {
+      height: 100%;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
 
 h1{
     text-align:center;
@@ -39,10 +48,10 @@ hr {
   margin: 20px auto;
 }
 
-.periodic-element{
+.element{
   background: black;
   border: 1px solid rgb(245, 7, 7);
-  color: #d7fff1;
+  color: rgb(5, 5, 43);
   border-radius: 8px;
   padding: 8px;
   width: 55px;
@@ -56,19 +65,19 @@ hr {
   position: relative;
 }
 
-.periodic-element .period-label,
-.periodic-element .group-label {
+.element .period-label,
+.element .group-label {
   position: absolute;
   font-size: 0.5rem;
-  color: #d7fff1;
+  color: rgb(5, 5, 43);
   opacity: 0.9;
 }
 
-.periodic-element .period-label {
+.element .period-label {
   left: 1px;
 }
 
-.periodic-element .group-label {
+.element .group-label {
   top: 2px;
   left: 0px;
 }
@@ -77,42 +86,20 @@ hr {
 .symbol {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #d7fff1;
+  color: rgb(5, 5, 43);
 }
 
 .number {
   font-size: 0.8rem;
   opacity: 0.8;
-  color: #d7fff1;
+  color: rgb(5, 5, 43);
 }
 
-.name {
-  font-size: 0.7rem;
-  opacity: 0.8;
-  color: #d7fff1;
-}
 
-.periodic-element:hover {
+.element:hover {
   transform: scale(1.08);
-  border-color: rgb(1, 1, 1);
-  background-color: white;
 }
 
-.periodic-element:hover .name{
-      color: #111;
-}
-.periodic-element:hover .number{
-      color: #111;
-}
-.periodic-element:hover .symbol{
-      color: #111;
-}
-.periodic-element:hover .period-label{
-      color: #111;
-}
-.periodic-element:hover .group-label{
-      color: #111;
-}
 
 @media (max-width: 1200px) {
   #periodic-table {
@@ -124,7 +111,7 @@ hr {
   #periodic-table {
     grid-template-columns: repeat(8, 1fr);
   }
-  .periodic-element {
+  .element {
     width: 60px;
     height: 60px;
   }
@@ -134,7 +121,7 @@ hr {
   #periodic-table {
     grid-template-columns: repeat(5, 1fr);
   }
-  .periodic-element {
+  .element {
     width: 55px;
     height: 55px;
   }
@@ -152,7 +139,7 @@ hr {
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
   }
-  .periodic-element {
+  .element {
     width: 42px;
     height: 42px;
     padding: 6px;
@@ -168,71 +155,64 @@ hr {
 }
 }
 
-#guide {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 2px dotted red;
-    padding: 10px;
+.legend {
+  width: 90%;
+  max-width: 900px;
+  margin: 25px auto 40px;
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,.15);
+}
+
+.legend h3 {
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.legend-items1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  padding: 5px;
+  border-radius: 20px;
+}
+.legend-items2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.legend-item span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .legend-item {
     font-size: 0.8rem;
-    align-items: center;
+  }
+  .legend-item span {
+    width: 16px;
+    height: 16px;
+  }
 }
-
-#guide dt{
-    border: 1px solid red;
-    border-bottom: none;
-    border-top-right-radius: 8px;
-}
-#guide dd{
-    border: 1px solid red;
-    border-top: none;
-    border-bottom-left-radius: 8px;
-}
-
-
-.element-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.element-symbol {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #2c7ef7;
-}
-
-.element-number {
-    font-size: 0.95rem;
-    color: #666;
-}
-
-.element-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 14px;
-}
-
-.element-info {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 5px 10px;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    white-space: nowrap;
-}
-
-.element-info::-webkit-scrollbar{
-    width: 10px;
-}
-
-.element-info strong {
-    color: #155;
-}
-
-
-
 
 .element-popup{
   display:none;
@@ -255,7 +235,6 @@ hr {
     box-shadow:0 0 12px black;
     animation: popIn 0.2s ease;
 }
-
 
 .headingTopic{
   color:  rgba(0,0,0,.15);

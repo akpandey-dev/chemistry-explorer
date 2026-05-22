@@ -1,3 +1,16 @@
+const colorMap = {
+  "nonmetal": "#a0e6ff",
+  "metalloid": "#ffd580",
+  "alkali metal": "#ff9e9e",
+  "alkaline earth metal": "#ffcc99",
+  "transition metal": "#c0ffc0",
+  "halogen": "#b3b3ff",
+  "noble gas": "#e0b3ff",
+  "lanthanide": "#ff6666",
+  "actinide": "#66ff99",
+  "post-transition metal": "#ffb3b3"
+};
+
 let allElements = []; 
 
 
@@ -18,16 +31,30 @@ function renderPeriodicTable(elements) {
 
   elements.forEach((el) => {
     const cell = document.createElement("div");
-    cell.className = "periodic-element";
-    cell.dataset.element = el.id;
+    cell.className = "element";
+
+    const category = (el.category || "").toLowerCase().trim();
+    const color = colorMap[category] || "var(--panel-bg)";
+    cell.style.backgroundColor = color;
+
+    const blockColors = {
+      s: "#00ffff",
+      p: "#ff00ff",
+      d: "#00ff00",
+      f: "#ff8800",
+    };
+    const borderColor = blockColors[el.block] || "#999";
+    cell.style.border = `2px solid ${borderColor}`;
+
+    cell.title = `${el.name} (${el.atomicMass})`;
+
 
     cell.innerHTML = `
       <div class="period-label">${el.period}</div>
       <div class="group-label">${el.group}</div>
       <div class="number">${el.atomicNumber}</div>
       <div class="symbol">${el.symbol}</div>
-      <div class="name">${el.name}</div>
-    `;
+          `;
 
     table.appendChild(cell);
 
@@ -72,7 +99,7 @@ document.addEventListener("keydown", (e) => {
 function openPopup(el) {
   document.body.style.overflow = "hidden";
   popupContent.innerHTML = `
-    <h2>
+    <h2 style="color:${colorMap[el.category.toLowerCase()] || 'white'};">
       ${el.symbol} – ${el.name}
     </h2>
     <p><strong>Atomic No:</strong> ${el.atomicNumber}</p>
@@ -85,6 +112,7 @@ function openPopup(el) {
   `;
   popup.style.display = "flex";
 }
+
 
 
 loadElements();

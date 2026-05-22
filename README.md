@@ -58,7 +58,8 @@ Recommended for learning, experimentation, and development.
 * Experimental/theoretical entries for elements 119 and 120
 * Interactive periodic table
 * Responsive element cells for desktop and mobile devices
-
+* Additional information provided through color-coded cells
+* Cell legend/key below for easier navigation
 * Element details displayed when a cell is selected held/right-clicked/double-clicked
     * Symbol
     * Name
@@ -155,7 +156,7 @@ This project uses two modes:
 * HTML5
 * CSS3
 * Vanilla JavaScript
-* Python (for local server)
+* Python (for local server and build automation)
 
 No external libraries or frameworks are used.
 

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<div class="allContainer">
 
     <h1>Chemistry Explorer</h1>
 
@@ -21,22 +22,30 @@
 
     <div id="periodic-table"></div>
 
-    <div id="guide">
-        <strong>Each element cell contains:</strong>
-        <br><br>
-            <dl>
-            <dt><b>Symbol</b></dt>
-            <dd>- The bold letters in the center</dd>
-            <dt><b>Name</b></dt>
-            <dd>- Below Symbols</dd>
-            <dt><b>Atomic Number</b></dt>
-            <dd>- Above Symbols</dd>
-            <dt><b>Group Label</b></dt>
-            <dd>- The integer at the top left corner</dd>
-            <dt><b>Period Label</b></dt>
-            <dd>- Below Group Label</dd>
-            </dl>
-    </div>
+<div class="legend">
+
+  <h3>Element Type Key</h3>
+  <div class="legend-items1">
+    <div class="legend-item"><span style="background:#a0e6ff;"></span>Nonmetals</div>
+    <div class="legend-item"><span style="background:#ffd580;"></span>Metalloids</div>
+    <div class="legend-item"><span style="background:#ff9e9e;"></span>Alkali Metals</div>
+    <div class="legend-item"><span style="background:#ffcc99;"></span>Alkaline Earth Metals</div>
+    <div class="legend-item"><span style="background:#c0ffc0;"></span>Transition Metals</div>
+    <div class="legend-item"><span style="background:#b3b3ff;"></span>Halogens</div>
+    <div class="legend-item"><span style="background:#e0b3ff;"></span>Noble Gases</div>
+    <div class="legend-item"><span style="background:#ff6666;"></span>Lanthanides</div>
+    <div class="legend-item"><span style="background:#66ff99;"></span>Actinides</div>
+    <div class="legend-item"><span style="background:#ffb3b3"></span>post-transition Metals</div>
+  </div>
+  <h3>Border Type Key</h3>
+  <div class="legend-items2">
+    <div class="legend-item"><span style="background:#00ffff"></span>Block S</div>
+    <div class="legend-item"><span style="background:#ff00ff"></span>Block P</div>
+    <div class="legend-item"><span style="background:#00ff00"></span>Block D</div>
+    <div class="legend-item"><span style="background:#ff8800"></span>Block F</div>
+  </div>
+  
+</div>
 
 <div class="search-element-header">
   <h3 class="heading-topic">Search an Element</h3>
@@ -58,6 +67,8 @@
         <div id="element-popup-content">
         </div>
     </div>
+
+</div>
 
     <script src="script.js"></script>
 
