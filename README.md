@@ -72,6 +72,8 @@ Recommended for learning, experimentation, and development.
     * Group
 * Smooth element navigation
 * Powerful element search feature
+    * Brief
+    * Details
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
 * Easy data fetching using Python localhost server

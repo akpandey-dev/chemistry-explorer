@@ -119,7 +119,7 @@ loadElements();
 
 
 function searchElement() {
-  const query = document.getElementById("searchbox").value.trim().toLowerCase();
+  const query = document.getElementById("search-box").value.trim().toLowerCase();
 
   if (!query) return;
 
@@ -131,6 +131,29 @@ function searchElement() {
     return;
   }
 
+  const styleSearch = document.getElementById("search-type-select").value;
+
+
+  if (styleSearch == "brief"){
+    // show summary
+  resultDiv.innerHTML = results
+    .map(
+      (el) => `
+      <div style="padding:8px;border-bottom:1px solid #333;">
+        <strong>${el.name}</strong> (${el.symbol})<br>
+        Atomic No: ${el.atomicNumber}<br>
+        Atomic Mass: ${el.atomicMass}<br>
+        Valency: ${el.valency}<br>
+        Category: ${el.category}<br>
+        Block: ${el.block.toUpperCase()}
+      </div>`
+    )
+    .join("");
+
+
+  };
+
+  if (styleSearch == "detail"){
   resultDiv.innerHTML = results
     .map(
       (el) => `
@@ -173,20 +196,21 @@ function searchElement() {
       </div>`
     )
     .join("");
+  }
 
-  document.getElementById("clearbtn").classList.add("clear");
+  document.getElementById("clear-btn").classList.add("clear");
 }
 
-document.getElementById("searchbtn").addEventListener("click", searchElement);
+document.getElementById("search-btn").addEventListener("click", searchElement);
 
-document.getElementById("searchbox").addEventListener("keypress", (e) => {
+document.getElementById("search-box").addEventListener("keypress", (e) => {
   if (e.key === "Enter") searchElement();
 });
 
-document.getElementById("clearbtn").addEventListener("click", () => {
+document.getElementById("clear-btn").addEventListener("click", () => {
   document.getElementById("search-result").innerHTML = "";
-  document.getElementById("searchbox").value = "";
-  document.getElementById("clearbtn").classList.remove("clear");
+  document.getElementById("search-box").value = "";
+  document.getElementById("clear-btn").classList.remove("clear");
 });
 
 

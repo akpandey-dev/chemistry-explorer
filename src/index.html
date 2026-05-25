@@ -53,15 +53,21 @@
 
 <div class="search-element" id="search-element">
 
-  <div class="searchbar">
-    <input type="search" id="searchbox" placeholder="Eg. Uranium">
-    <button type="button" id="searchbtn">🔍</button>
-        <button type="button" id="clearbtn">Clear</button>
+  <div class="search-bar">
+    <input type="search" id="search-box" placeholder="Eg. Uranium">
+    <button type="button" id="search-btn">🔍</button>
+        <button type="button" id="clear-btn">Clear</button>
   </div>
-
+  <div class="search-bar">
+    <select id="search-type-select" title="Select query style...">
+      <option value="brief">Brief</option>
+      <option value="detail">Detail</option>
+    </select>
+  </div>
   <div class="search-result" id="search-result">
   </div>
-</div>
+  </div>
+
 
     <div class="element-popup" id="element-popup">
         <div id="element-popup-content">

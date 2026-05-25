@@ -269,7 +269,7 @@ hr {
   justify-self: center;
   align-self: center;
 }
-.searchbar{
+.search-bar{
   display: flex;
   flex-direction: row;
   height: 5vh;
@@ -280,7 +280,7 @@ hr {
   justify-content: center;
 }
 
-#searchbox{
+#search-box{
   width: 45vw;
   background-color: black;
   box-shadow: 2px 2px 2px rgb(34, 30, 30);
@@ -290,7 +290,7 @@ hr {
 
 }
 
-#searchbtn{
+#search-btn{
 
   background-color: black;
   width: 10vw;
@@ -306,7 +306,15 @@ hr {
   color: #d7fff1;
 }
 
-#clearbtn{
+#search-type-select{
+  background-color: black;
+  width: 40vw;
+  height: 3.5vh;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  color: #d7fff1;
+}
+
+#clear-btn{
   background-color: black;
   width: 30vw;
   height: 3.8vh;
@@ -314,7 +322,7 @@ hr {
   color: #d7fff1;
 }
 
-#clearbtn.clear{
+#clear-btn.clear{
   color: red;
 }
 </style>
@@ -364,15 +372,21 @@ hr {
 
 <div class="search-element" id="search-element">
 
-  <div class="searchbar">
-    <input type="search" id="searchbox" placeholder="Eg. Uranium">
-    <button type="button" id="searchbtn">🔍</button>
-        <button type="button" id="clearbtn">Clear</button>
+  <div class="search-bar">
+    <input type="search" id="search-box" placeholder="Eg. Uranium">
+    <button type="button" id="search-btn">🔍</button>
+        <button type="button" id="clear-btn">Clear</button>
   </div>
-
+  <div class="search-bar">
+    <select id="search-type-select" title="Select query style...">
+      <option value="brief">Brief</option>
+      <option value="detail">Detail</option>
+    </select>
+  </div>
   <div class="search-result" id="search-result">
   </div>
-</div>
+  </div>
+
 
     <div class="element-popup" id="element-popup">
         <div id="element-popup-content">
@@ -5177,7 +5191,7 @@ function openPopup(el) {
 
 
 function searchElement() {
-  const query = document.getElementById("searchbox").value.trim().toLowerCase();
+  const query = document.getElementById("search-box").value.trim().toLowerCase();
 
   if (!query) return;
 
@@ -5189,6 +5203,29 @@ function searchElement() {
     return;
   }
 
+  const styleSearch = document.getElementById("search-type-select").value;
+
+
+  if (styleSearch == "brief"){
+    // show summary
+  resultDiv.innerHTML = results
+    .map(
+      (el) => `
+      <div style="padding:8px;border-bottom:1px solid #333;">
+        <strong>${el.name}</strong> (${el.symbol})<br>
+        Atomic No: ${el.atomicNumber}<br>
+        Atomic Mass: ${el.atomicMass}<br>
+        Valency: ${el.valency}<br>
+        Category: ${el.category}<br>
+        Block: ${el.block.toUpperCase()}
+      </div>`
+    )
+    .join("");
+
+
+  };
+
+  if (styleSearch == "detail"){
   resultDiv.innerHTML = results
     .map(
       (el) => `
@@ -5231,20 +5268,21 @@ function searchElement() {
       </div>`
     )
     .join("");
+  }
 
-  document.getElementById("clearbtn").classList.add("clear");
+  document.getElementById("clear-btn").classList.add("clear");
 }
 
-document.getElementById("searchbtn").addEventListener("click", searchElement);
+document.getElementById("search-btn").addEventListener("click", searchElement);
 
-document.getElementById("searchbox").addEventListener("keypress", (e) => {
+document.getElementById("search-box").addEventListener("keypress", (e) => {
   if (e.key === "Enter") searchElement();
 });
 
-document.getElementById("clearbtn").addEventListener("click", () => {
+document.getElementById("clear-btn").addEventListener("click", () => {
   document.getElementById("search-result").innerHTML = "";
-  document.getElementById("searchbox").value = "";
-  document.getElementById("clearbtn").classList.remove("clear");
+  document.getElementById("search-box").value = "";
+  document.getElementById("clear-btn").classList.remove("clear");
 });
 
 
