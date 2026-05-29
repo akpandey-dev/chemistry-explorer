@@ -314,6 +314,14 @@ hr {
   color: #d7fff1;
 }
 
+#search-method-select{
+  background-color: black;
+  width: 40vw;
+  height: 3.5vh;
+  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  color: #d7fff1;
+}
+
 #clear-btn{
   background-color: black;
   width: 30vw;
@@ -381,6 +389,11 @@ hr {
     <select id="search-type-select" title="Select query style...">
       <option value="brief">Brief</option>
       <option value="detail">Detail</option>
+    </select>
+    <select id="search-method-select" title="Select query method...">
+      <option value="atomic-no">Atomic No</option>
+      <option value="symbol">Symbol</option>
+      <option value="name">Name</option>
     </select>
   </div>
   <div class="search-result" id="search-result">
@@ -5192,10 +5205,16 @@ function openPopup(el) {
 
 function searchElement() {
   const query = document.getElementById("search-box").value.trim().toLowerCase();
+  const method = document.getElementById("search-method-select").value;
 
   if (!query) return;
 
-  const results = allElements.filter((el) => el.name.toLowerCase().includes(query));
+  const results = allElements.filter((el) => {
+    if (method === "name") return el.name.toLowerCase().includes(query);
+    if (method === "symbol") return el.symbol.toLowerCase() === query;
+    if (method === "atomic-no") return el.atomicNumber == query;
+  });
+    
   const resultDiv = document.getElementById("search-result");
 
   if (results.length === 0) {

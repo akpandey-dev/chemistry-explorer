@@ -74,6 +74,7 @@ Recommended for learning, experimentation, and development.
 * Powerful element search feature
     * Brief
     * Details
+    * Multiple search methods
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
 * Easy data fetching using Python localhost server

@@ -120,10 +120,16 @@ loadElements();
 
 function searchElement() {
   const query = document.getElementById("search-box").value.trim().toLowerCase();
+  const method = document.getElementById("search-method-select").value;
 
   if (!query) return;
 
-  const results = allElements.filter((el) => el.name.toLowerCase().includes(query));
+  const results = allElements.filter((el) => {
+    if (method === "name") return el.name.toLowerCase().includes(query);
+    if (method === "symbol") return el.symbol.toLowerCase() === query;
+    if (method === "atomic-no") return el.atomicNumber == query;
+  });
+    
   const resultDiv = document.getElementById("search-result");
 
   if (results.length === 0) {
