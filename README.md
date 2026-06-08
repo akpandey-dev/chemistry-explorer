@@ -1,10 +1,8 @@
 # Chemistry Explorer
 
-An interactive, browser-based chemical element reference that allows users to explore the periodic table and view detailed information about chemical elements.
+An interactive, JSON-powered periodic table and chemistry exploration system.
 
-Chemistry Explorer provides a lightweight reference environment inside the browser, enabling quick exploration of element properties through a responsive periodic table and dynamically generated information cards.
-
----
+Chemistry Explorer visualizes chemical elements in a dynamic periodic table and allows users to explore detailed information using multiple search modes. It is designed for students, developers, and science enthusiasts who want a lightweight, browser-based way to explore chemical data.
 
 The dataset includes up to **120 elements**, each described using **36 detailed properties**, including both standard and extended entries.
 
@@ -48,7 +46,11 @@ src/index.html
 py scripts/build.py
 ```
 
-Recommended for learning, experimentation, and development.
+This mode is recommended for:
+
+* learning
+* modifying the project
+* experimenting with features
 
 ---
 
@@ -56,11 +58,11 @@ Recommended for learning, experimentation, and development.
 
 * Information for all 118 officially recognized elements
 * Experimental/theoretical entries for elements 119 and 120
-* Interactive periodic table
+* Interactive and dynamic periodic table interface
 * Responsive element cells for desktop and mobile devices
-* Additional information provided through color-coded cells
-* Cell legend/key below for easier navigation
-* Element details displayed when a cell is selected held/right-clicked/double-clicked
+* Color-coded element categories
+* Legend for guidance
+* Interactive UI (click / hold for quick info)
     * Symbol
     * Name
     * Atomic Number
@@ -72,9 +74,13 @@ Recommended for learning, experimentation, and development.
     * Group
 * Smooth element navigation
 * Powerful element search feature
-    * Brief
-    * Details
-    * Multiple search methods
+    * Search mode:
+        * Brief
+        * Details
+    * Search methods:
+        * Atomic Number
+        * Symbol
+        * Name
 * Dynamically generated interface using JavaScript
 * Lightweight and dependency-free
 * Easy data fetching using Python localhost server
@@ -168,9 +174,10 @@ No external libraries or frameworks are used.
 ## Limitations
 
 * Not intended to replace authoritative scientific references
-* Some scientific data may be inaccurate
-* Synthetic and theoretical element data may be incomplete or speculative
-* No external scientific database or API
+* Some chemical data may be inaccurate
+* Not connected to live scientific databases/APIs
+* Search system is basic and can be improved
+* UI is functional but not fully polished
 * Browser-dependent behavior
 
 ---
