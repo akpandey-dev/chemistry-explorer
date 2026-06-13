@@ -60,6 +60,7 @@ This mode is recommended for:
 * Experimental/theoretical entries for elements 119 and 120
 * Interactive and dynamic periodic table interface
 * Responsive element cells for desktop and mobile devices
+* Scroll to top button for smoother UX
 * Color-coded element categories
 * Legend for guidance
 * Interactive UI (click / hold for quick info)
