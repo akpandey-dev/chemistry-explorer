@@ -7,6 +7,23 @@
     <title>Chemistry Explorer</title>
 
     <style>
+    :root {
+      --chrome-bg: #2c2b2b;
+      --panel-bg: #1f1e1e;
+      --border-subtle: #2a2a2a;
+      --border-alt:#2980b9;
+      --accent: #00ff00;
+      --hover: #094771;
+      --box-shadow: rgb(34, 30, 30);
+      --bg-color: rgb(50, 48, 48);
+      --bg-alt-color:#bbb;
+      --bg-transparent: rgba(0, 0, 0, 0.4);
+      --text: #ffffff;
+      --text-alt: black;
+      --text-muted: #cfcfcf;
+      --element-labels:rgb(145, 10, 10);
+    }
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -15,18 +32,19 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
 body {
-    background: #d7fff1;
+    background: var(--bg-color);
     height: auto;
     min-height: 100vh;
-    width: 90vw;
+    width: 100vw;
     margin: auto;
     padding: 5px;
     font-family: Arial, sans-serif;
     scrollbar-width: none;
-    color: #222;
+    color: var(--text);
 }
 
 html::-webkit-scrollbar,
@@ -44,16 +62,60 @@ body::-webkit-scrollbar{
       align-items: center;
     }
 
-
-h1{
-    text-align:center;
-}
-
+    .header {
+      background-color: transparent;
+      width: 60vw;
+      height: 12vh;
+      perspective: 1000px;
+      margin: 20px;
+    }
+    .heading {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .header:hover .heading {
+      transform: rotateY(180deg);
+    }
+    .heading-front {
+      background-color: var(--bg-alt-color);
+      color: var(--text-alt);
+      text-align: center;
+      position: absolute;
+      border-top-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border: 2px solid var(--border-alt);
+      margin: auto;
+      padding: 2px;
+    }
+    .heading-back {
+      background-color: var(--panel-bg);
+      color: var(--text);
+      transform: rotateY(180deg);
+      text-align: center;
+      position: absolute;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border: 2px solid var(--border-alt);
+      margin: auto;
+      padding: 2px;
+    }
+    .heading-front,
+    .heading-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
 
 hr {
     align-self: stretch;
     border: none;
-    border-top: 1px solid #666;
+    border-top: 1px solid var(--border-subtle);
     margin: 15px 0;
 }
 
@@ -68,9 +130,8 @@ hr {
 }
 
 .element{
-  background: black;
-  border: 1px solid rgb(245, 7, 7);
-  color: rgb(5, 5, 43);
+  background: var(--panel-bg);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 8px;
   width: 55px;
@@ -88,7 +149,7 @@ hr {
 .element .group-label {
   position: absolute;
   font-size: 0.5rem;
-  color: rgb(5, 5, 43);
+  color: var(--element-labels);
   opacity: 0.9;
 }
 
@@ -105,13 +166,13 @@ hr {
 .symbol {
   font-size: 1.3rem;
   font-weight: bold;
-  color: rgb(5, 5, 43);
+  color: var(--text);
 }
 
 .number {
   font-size: 0.8rem;
   opacity: 0.8;
-  color: rgb(5, 5, 43);
+  color: var(--text-alt);
 }
 
 
@@ -178,14 +239,16 @@ hr {
   width: 90%;
   max-width: 900px;
   margin: 25px auto 40px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 15px 20px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,.15);
-}
+  box-shadow: 0 0 10px var(--box-shadow);}
 
 .legend h3 {
   margin-bottom: 10px;
+  color: var(--accent);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 10px;
@@ -197,6 +260,7 @@ hr {
   justify-content: center;
   gap: 10px 20px;
   padding: 5px;
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
 }
 .legend-items2 {
@@ -205,6 +269,7 @@ hr {
   justify-content: center;
   gap: 10px 20px;
   padding: 5px;
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
 }
 
@@ -212,6 +277,7 @@ hr {
   display: flex;
   align-items: center;
   font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .legend-item span {
@@ -219,6 +285,7 @@ hr {
   width: 20px;
   height: 20px;
   margin-right: 8px;
+  border: 1px solid var(--border-subtle);
   border-radius: 4px;
 }
 
@@ -237,8 +304,9 @@ hr {
   display:none;
   position:fixed;
   top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0, 0, 0, 0.4);
+  width:100%; 
+  height:100%;
+  background: var(--bg-transparent);
   backdrop-filter: blur(3px);
   justify-content:center;
   align-items:center;
@@ -246,17 +314,17 @@ hr {
 }
 
 #element-popup-content{
-    background:#1e1e1e;
+    background:var(--bg-color);
     padding:20px;
     width:320px;
     border-radius:12px;
-    color:white;
-    box-shadow:0 0 12px black;
+    color:var(--text);
+    box-shadow:0 0 12px var(--box-shadow);
     animation: popIn 0.2s ease;
 }
 
 .headingTopic{
-  color:  rgba(0,0,0,.15);
+  color: var(--text-muted);
 }
 
 
@@ -264,11 +332,11 @@ hr {
   width: 90%;
   max-width: 900px;
   margin: 20px auto 10px;
-  border: 1px solid  rgba(0,0,0,.15);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 15px 20px;
   text-align: center;
-  box-shadow: 0 0 10px  rgba(0,0,0,.15);
+  box-shadow: 0 0 10px var(--box-shadow);
 }
 
 .search-element{
@@ -292,52 +360,47 @@ hr {
 
 #search-box{
   width: 45vw;
-  background-color: black;
-  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  background-color: var(--border-subtle);
+  box-shadow: 2px 2px 2px var(--box-shadow);
   margin: auto;
-  color: #d7fff1;
+  color: var(--text);
   height: 3.5vh;
 
 }
 
 #search-btn{
-
-  background-color: black;
+  background-color: var(--border-subtle);
   width: 10vw;
   height: 3.8vh;
-  box-shadow: 2px 2px 2px rgb(34, 30, 30);
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 .search-result{
-  background-color: black;
+  background-color: var(--border-subtle);
   width: 100%;
   height: auto;
-  box-shadow: 2px 2px 2px rgb(34, 30, 30);
-  color: #d7fff1;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 #search-type-select{
-  background-color: black;
+  background-color: var(--border-subtle);
   width: 40vw;
   height: 3.5vh;
-  box-shadow: 2px 2px 2px rgb(34, 30, 30);
-  color: #d7fff1;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 #search-method-select{
-  background-color: black;
+  background-color: var(--border-subtle);
   width: 40vw;
   height: 3.5vh;
-  box-shadow: 2px 2px 2px rgb(34, 30, 30);
-  color: #d7fff1;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 #clear-btn{
-  background-color: black;
+  background-color: var(--border-subtle);
   width: 30vw;
   height: 3.8vh;
-  box-shadow: 2px 2px 2px rgb(34, 30, 30);
-  color: #d7fff1;
+  box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 #clear-btn.clear{
@@ -371,6 +434,15 @@ hr {
   opacity: 0.9;
 }
 
+#scroll-to-top-btn svg circle {
+  transition: stroke 0.2s ease, stroke-width 0.2s ease;
+}
+
+#scroll-to-top-btn:hover svg circle {
+  stroke: var(--border-alt);
+  stroke-width: 1;
+}
+
 #scroll-to-top-btn svg {
   width: 100%;
   height: 100%;
@@ -382,7 +454,12 @@ hr {
 <body>
 <div class="allContainer">
 
-    <h1>Chemistry Explorer</h1>
+<div class="header">
+  <div class="heading">
+    <h4 class="heading-front">Chemistry Explorer</h4>
+    <h6 class="heading-back">Explore the fascinating world of chemistry!<br>Discover elements. Interact. Learn.</h6>
+  </div>
+</div>
 
 <div class="periodic-table-header">
     <h3 class="heading-topic">Periodic Table</h3>
@@ -412,7 +489,7 @@ hr {
     <div class="legend-item"><span style="background:#00ffff"></span>Block S</div>
     <div class="legend-item"><span style="background:#ff00ff"></span>Block P</div>
     <div class="legend-item"><span style="background:#00ff00"></span>Block D</div>
-    <div class="legend-item"><span style="background:#ff8800"></span>Block F</div>
+    <div class="legend-item"><span style="background:#fcfbfb"></span>Block F</div>
   </div>
   
 </div>
@@ -421,10 +498,12 @@ hr {
   <h3 class="heading-topic">Search an Element</h3>
 </div>
 
+<hr>
+
 <div class="search-element" id="search-element">
 
   <div class="search-bar">
-    <input type="search" id="search-box" placeholder="Eg. Uranium">
+    <input type="search" id="search-box" placeholder="Type here...">
     <button type="button" id="search-btn">🔍</button>
         <button type="button" id="clear-btn">Clear</button>
   </div>
@@ -452,8 +531,8 @@ hr {
 <div class="scroll-btn-container">
   <button type="button" id="scroll-to-top-btn">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="12" cy="12" r="11" fill="#1f2937" />
-    <path d="M12 7l-5 5h3v5h4v-5h3z" fill="#ffffff" />
+    <circle cx="12" cy="12" r="11" fill="#1f1e1e" />
+    <path d="M12 7l-5 5h3v5h4v-5h3z" fill="#bbb" />
   </svg>
   </button>
 </div>
@@ -5178,7 +5257,7 @@ function renderPeriodicTable(elements) {
       s: "#00ffff",
       p: "#ff00ff",
       d: "#00ff00",
-      f: "#ff8800",
+      f: "#fcfbfb",
     };
     const borderColor = blockColors[el.block] || "#999";
     cell.style.border = `2px solid ${borderColor}`;

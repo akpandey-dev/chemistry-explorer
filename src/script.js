@@ -41,7 +41,7 @@ function renderPeriodicTable(elements) {
       s: "#00ffff",
       p: "#ff00ff",
       d: "#00ff00",
-      f: "#ff8800",
+      f: "#fcfbfb",
     };
     const borderColor = blockColors[el.block] || "#999";
     cell.style.border = `2px solid ${borderColor}`;
