@@ -439,3 +439,33 @@ hr {
   height: 100%;
   display: block;
 }
+
+.global-info-btn {
+  position: fixed; 
+  top: 5px;
+  right: 5px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-alt);
+  color: var(--text);
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000; /* stays above everything */
+  box-shadow: 0 0 8px var(--box-shadow);
+  transition: 0.2s;
+    opacity: 0.7;
+}
+
+.global-info-btn:hover {
+  transform: scale(1.15);
+  background: var(--accent);
+  opacity: 1;
+}
+
+.global-info-btn.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}

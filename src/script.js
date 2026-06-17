@@ -220,6 +220,50 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 });
 
 
+const infoBtn = document.querySelector('.global-info-btn');
+let helpText = `
+<!DOCTYPE html>
+<head>
+<title>Chemistry Explorer | Quick Guide</title>
+</head>
+<body>
+<h2>Chemistry Explorer -- Quick Guide</h2>
+
+<p><strong>Search:</strong> Use the search bar to find elements by Name, Symbol, or Atomic Number.</p>
+<p><strong>Periodic Table:</strong> Hover over elements to explore visually. Right-click (or long press on mobile) to open detailed element info.</p>
+<p><strong>Element Popup:</strong> Right click or hold a cell to show atomic number, mass, valency, category, block, group, and period.</p>
+<p><strong>Color System:</strong> Each color represents an element category (nonmetals, metals, noble gases, etc.).</p>
+<p><strong>Block Borders:</strong> Border colors indicate S, P, D, and F blocks.</p>
+<p><strong>Search Modes:</strong><br>
+- Brief → Quick summary view<br>
+- Detail → Full scientific dataset</p>
+<p><strong>Search Options:</strong><br>
+- Atomic Number → Search elements using atomic number<br>
+- Name → Search elements using their names<br>
+- Symbol → Search elements using their chemical symbols</p>
+<p><strong>Clear Button:</strong> Resets search and restores full periodic table view.</p>
+<p><strong>Note:</strong> Some values are AI-generated and may contain inaccuracies. Verify before use.</p>
+<hr>
+<p style="opacity:0.7;">Built for learning, experimenting, and exploring chemistry visually.</p>
+</body>`;
+
+infoBtn.addEventListener('click', () =>{
+  const win = window.open("", "_blank");
+
+win.document.open();
+win.document.write(helpText);
+win.document.close();
+})
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    infoBtn.classList.add('hide');
+  } else {
+    infoBtn.classList.remove('hide');
+  }
+});
+
+
 const scrollBtn = document.getElementById("scroll-to-top-btn");
 
 window.addEventListener("scroll", () => {

@@ -63,6 +63,7 @@ This mode is recommended for:
 * Scroll to top button for smoother UX
 * Color-coded element categories
 * Legend for guidance
+* Additional Guide/Information button on top for extra support
 * Interactive UI (click / hold for quick info)
     * Symbol
     * Name
