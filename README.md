@@ -74,6 +74,7 @@ This mode is recommended for:
     * Block
     * Period
     * Group
+* Copy button inside popup
 * Smooth element navigation
 * Powerful element search feature
     * Search mode:

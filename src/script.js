@@ -82,6 +82,7 @@ cell.addEventListener("touchmove", () => clearTimeout(pressTimer));
 
 const popup = document.getElementById("element-popup");
 const popupContent = document.getElementById("element-popup-content");
+let popupElementText = '';
 
 // Close popup on clicking outsode
 popup.addEventListener("click", (event) => {
@@ -96,8 +97,33 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+async function copyElementText(text, button) {
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = "Copied!";
+    setTimeout(() => {
+      button.textContent = "Copy";
+    }, 1500);  
+  } catch (err) {
+    console.error("Failed to copy text: ", err);
+    window.alert("Failed to copy text. Please try again.");
+  }
+}
+
 function openPopup(el) {
   document.body.style.overflow = "hidden";
+
+  popupElementText = `
+  ${el.symbol} – ${el.name}
+  Atomic No: ${el.atomicNumber}
+  Atomic Mass: ${el.atomicMass}
+  Valency: ${el.valency}
+  Category: ${el.category}
+  Block: ${el.block.toUpperCase()}
+  Period: ${el.period}
+  Group: ${el.group}
+  `;
+
   popupContent.innerHTML = `
     <h2 style="color:${colorMap[el.category.toLowerCase()] || 'white'};">
       ${el.symbol} – ${el.name}
@@ -109,7 +135,10 @@ function openPopup(el) {
     <p><strong>Block:</strong> ${el.block.toUpperCase()}</p>
     <p><strong>Period:</strong> ${el.period}</p>
     <p><strong>Group:</strong> ${el.group}</p>
+
+    <button id="copyElement" onclick="copyElementText(popupElementText, this)">Copy</button>
   `;
+
   popup.style.display = "flex";
 }
 

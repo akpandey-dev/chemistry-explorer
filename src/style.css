@@ -333,6 +333,17 @@ hr {
     user-select: none;
 }
 
+#copyElement {
+  width: 100%;
+  padding: 10px;
+  margin-top: 16px;
+  cursor: pointer;
+  background-color: var(--border-subtle);
+  border: 1px solid var(--border-alt);
+  color: var(--text);
+  border-radius: 6px;
+}
+
 .heading-topic{
   color: var(--text-muted);
   user-select: none;
